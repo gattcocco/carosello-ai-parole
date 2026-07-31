@@ -14,6 +14,7 @@ Pipeline per contenuti IG della serie «Le parole nuove dell'AI»: carosello, re
 - `brand-manual-v2.md` — identità visiva corrente (palette, tipografia, montaggio, regole anti-slop)
 - `pipeline-immagini-v2.md` — prompt ChatGPT per generare gli asset (style lock + soggetti)
 - `reel-parole-ai-v2.mp4` — output corrente (non versionato: si rigenera, vedi sotto)
+- `testi/` — testi della serie: bibliografia ragionata, piano di letture per il blog, post Substack, piano del carosello con caption
 
 ## Come si rigenera il reel
 
