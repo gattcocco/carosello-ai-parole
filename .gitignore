@@ -6,6 +6,10 @@ reel2_frames/
 # output video: rigenerabili da pipeline/reel*.py, non versionati
 *.mp4
 
+# B-roll di terzi: press kit Fellow Traveller, non ridistribuito (vedi README)
+*.mov
+B-Roll/
+
 # file di sistema
 .DS_Store
 Thumbs.db

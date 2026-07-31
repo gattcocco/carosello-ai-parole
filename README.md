@@ -15,6 +15,9 @@ Pipeline per contenuti IG della serie «Le parole nuove dell'AI»: carosello, re
 - `pipeline-immagini-v2.md` — prompt ChatGPT per generare gli asset (style lock + soggetti)
 - `reel-parole-ai-v2.mp4` — output corrente (non versionato: si rigenera, vedi sotto)
 - `testi/` — testi della serie: bibliografia ragionata, piano di letture per il blog, post Substack, piano del carosello con caption
+- `GOATS/` — soggetti del reel v3 (`v3-*.png`) + reference
+- `Screenshots/` — screenshot di gioco per le type card del reel v3
+- `B-Roll/` — **non versionato**: 9 clip 1920×1080 dal press kit ufficiale di *Titanium Court* (Fellow Traveller). Materiale di terzi, va riscaricato dal press kit dell'editore. Lo storyboard in `testi/storyboard-reel-mountain-goats.md` cita le clip per nome (`Game Intro.mov`, `Dragon Fight.mov`, …): servono con quei nomi esatti dentro `B-Roll/` per montare il reel v3.
 
 ## Come si rigenera il reel
 
