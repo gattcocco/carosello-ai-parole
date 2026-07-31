@@ -1,0 +1,12 @@
+# frame temporanei di rendering
+reel_frames/
+reel2_frames/
+*.tmp
+
+# output video: rigenerabili da pipeline/reel*.py, non versionati
+*.mp4
+
+# file di sistema
+.DS_Store
+Thumbs.db
+desktop.ini
