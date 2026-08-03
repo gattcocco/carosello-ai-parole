@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --nero:#0B0B0D; --osso:#F2EFE9; --verde:#A6FF00;
+    --viola:#5B3E96; --rosso:#FF4D00; --cenere:#4A4A50;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1920px;}
+  body{background:var(--nero);position:relative;overflow:hidden;
+    font-family:"Playfair Display",serif;-webkit-font-smoothing:antialiased;}
+
+  .slash{position:absolute;top:-40px;width:70px;height:270px;background:var(--rosso);transform:skewX(-24deg);}
+  .slash.a{right:230px;} .slash.b{right:120px;}
+
+  .ghost{position:absolute;right:-64px;top:470px;font-weight:900;font-size:288px;
+    line-height:.8;color:#101013;letter-spacing:-6px;white-space:nowrap;z-index:0;}
+
+  .title{position:absolute;left:72px;top:300px;z-index:2;font-weight:800;
+    font-size:150px;line-height:.98;color:var(--osso);letter-spacing:-4px;}
+  .title .verde{color:var(--verde);}
+
+  .bar{position:absolute;left:74px;top:948px;width:560px;height:14px;background:var(--rosso);z-index:2;}
+
+  .body{position:absolute;left:74px;top:1024px;width:840px;z-index:2;
+    font-weight:700;font-size:46px;line-height:1.28;color:var(--osso);}
+
+  /* cornice per l'innesto merlino */
+  .frame{position:absolute;left:72px;top:1230px;width:720px;height:536px;
+    border:5px solid var(--verde);background:#000;z-index:2;}
+
+  .count{position:absolute;right:64px;top:1840px;font-family:"Space Mono",monospace;
+    font-weight:700;color:var(--cenere);font-size:44px;letter-spacing:8px;z-index:2;}
+</style>
+</head>
+<body>
+  <div class="slash a"></div>
+  <div class="slash b"></div>
+  <div class="ghost">STATISTICA</div>
+  <div class="title">SEMBRA<br>MAGIA,<br>MA È<br><span class="verde">STATISTICA.</span></div>
+  <div class="bar"></div>
+  <div class="body">Nessun incantesimo: solo la parola<br>più probabile, una dopo l'altra.</div>
+  <div class="frame"></div>
+  <div class="count">FINE</div>
+</body>
+</html>
