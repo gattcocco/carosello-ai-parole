@@ -11,6 +11,8 @@ Pipeline per contenuti IG della serie «Le parole nuove dell'AI»: carosello, re
 
 - `reels/` — struttura corrente per i nuovi progetti
   - `extra-coin/` — recensione, fonti, asset e paper edit ultra-discorsivo v0.5
+- `BUCO NERO/` — reel muto su Ghostty Blackhole (renderer, storyboard, asset). Ancora in root: migrerà in `reels/buco-nero/` con la prova del renderer.
+- `brand/` — identità visiva condivisa: brand manual generale (PDF) e loghi Critical Inventory. Le regole dei Reel restano in `brand-manual-v2.md`.
 - `pipeline/` — script Python di montaggio
   - `monta_card.py` — carosello 9 card 1080×1350 (brand v1)
   - `reel.py` — reel v1, 9 scene con glitch di transizione
