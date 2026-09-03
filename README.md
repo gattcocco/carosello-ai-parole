@@ -2,8 +2,15 @@
 
 Pipeline per contenuti IG della serie «Le parole nuove dell'AI»: carosello, reel v1 (stile risograph crema) e reel v2 (stile Evangelion). Testi, brand manual, prompt di generazione immagini e script di montaggio.
 
+> **Repository in migrazione incrementale.** I reel storici conservano per ora
+> i loro path originali. I nuovi lavori partono dalla struttura autonoma
+> `reels/<slug>/`, descritta in [`reels/README.md`](reels/README.md), per non
+> aumentare la mescolanza tra sorgenti, asset di terzi e output.
+
 ## Struttura
 
+- `reels/` — struttura corrente per i nuovi progetti
+  - `extra-coin/` — recensione, fonti, asset e paper edit ultra-discorsivo v0.5
 - `pipeline/` — script Python di montaggio
   - `monta_card.py` — carosello 9 card 1080×1350 (brand v1)
   - `reel.py` — reel v1, 9 scene con glitch di transizione
@@ -18,6 +25,10 @@ Pipeline per contenuti IG della serie «Le parole nuove dell'AI»: carosello, re
 - `GOATS/` — soggetti del reel v3 (`v3-*.png`) + reference
 - `Screenshots/` — screenshot di gioco per le type card del reel v3
 - `B-Roll/` — **non versionato**: 9 clip 1920×1080 dal press kit ufficiale di *Titanium Court* (Fellow Traveller). Materiale di terzi, va riscaricato dal press kit dell'editore. Lo storyboard in `testi/storyboard-reel-mountain-goats.md` cita le clip per nome (`Game Intro.mov`, `Dragon Fight.mov`, …): servono con quei nomi esatti dentro `B-Roll/` per montare il reel v3.
+
+Le cartelle storiche sopra sono considerate **legacy**: verranno migrate una
+alla volta, aggiornando e provando il relativo renderer nello stesso passaggio.
+Non spostarle manualmente senza correggere i path negli script.
 
 ## Come si rigenera il reel
 

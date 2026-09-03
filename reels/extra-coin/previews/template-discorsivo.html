@@ -1,0 +1,383 @@
+<div id="extra-coin-template-preview">
+  <div class="viz-controls" role="group" aria-label="Style frame Extra Coin">
+    <button type="button" class="btn btn-primary" data-ec-frame="identity" aria-pressed="true">Identità</button>
+    <button type="button" class="btn" data-ec-frame="narrative" aria-pressed="false">Racconto</button>
+    <button type="button" class="btn" data-ec-frame="thesis" aria-pressed="false">Tesi</button>
+    <button type="button" class="btn" data-ec-frame="meme" aria-pressed="false">Meme</button>
+    <button type="button" class="btn" data-ec-frame="closing" aria-pressed="false">Chiusura</button>
+  </div>
+
+  <div class="ec-stage" aria-live="polite">
+    <section class="ec-phone ec-frame is-active" data-ec-panel="identity" aria-label="Scheda identità">
+      <div class="ec-alert-line"></div>
+      <div class="ec-meta-top">RECENSIONE DI · 01 / 15</div>
+      <div class="ec-identity-art" aria-hidden="true">
+        <span>THE ARCADE</span>
+        <i></i><i></i><i></i>
+      </div>
+      <div class="ec-identity-copy">
+        <div class="ec-kicker">RECENSIONE DI</div>
+        <h2>EXTRA<br>COIN</h2>
+        <div class="ec-rule"></div>
+        <div class="ec-data">CINIC GAMES · 8 OTTOBRE 2024</div>
+        <div class="ec-data">PC (STEAM) · NINTENDO SWITCH</div>
+        <div class="ec-port">DAL 2026: PLAYSTATION · XBOX</div>
+      </div>
+    </section>
+
+    <section class="ec-phone ec-frame" data-ec-panel="narrative" aria-label="Scheda narrativa" hidden>
+      <div class="ec-meta-top">RECENSIONE / EXTRA COIN · 03 / 15</div>
+      <div class="ec-media ec-arcade" aria-hidden="true">
+        <span>THE ARCADE</span>
+        <b></b><b></b><b></b>
+        <small>FOOTAGE: EXTRA COIN — CINIC GAMES</small>
+      </div>
+      <div class="ec-copy-block">
+        <div class="ec-section-label">CHE GIOCO È</div>
+        <p>È un'avventura narrativa dentro <em>The Arcade</em>, un metaverso che promette una vita migliore.</p>
+      </div>
+      <div class="ec-progress"><span style="width:20%"></span></div>
+    </section>
+
+    <section class="ec-phone ec-frame" data-ec-panel="thesis" aria-label="Scheda tesi" hidden>
+      <div class="ec-meta-top">RECENSIONE / EXTRA COIN · 07 / 15</div>
+      <div class="ec-thesis">
+        <div class="ec-section-label">LA DOMANDA</div>
+        <h2>TOTALE<br><strong>INCOMPETENZA</strong><br>DEGLI<br>SVILUPPATORI?</h2>
+        <p>È la domanda inevitabile.<br>Ma la risposta è: <em>non proprio.</em></p>
+      </div>
+      <div class="ec-progress"><span style="width:47%"></span></div>
+    </section>
+
+    <section class="ec-phone ec-frame" data-ec-panel="meme" aria-label="Scheda meme" hidden>
+      <div class="ec-meta-top">RECENSIONE / EXTRA COIN · 07 / 15</div>
+      <div class="ec-media ec-meme-window" aria-label="Spazio per la GIF di Fry">
+        <div class="ec-eyes" aria-hidden="true"><i></i><i></i></div>
+        <span>GIF REACTION · ULTIMI 1,2 S</span>
+      </div>
+      <div class="ec-copy-block">
+        <div class="ec-section-label">LA DOMANDA RESTA VISIBILE</div>
+        <p>Totale incompetenza degli sviluppatori? La risposta è: <em>non proprio.</em></p>
+      </div>
+      <div class="ec-progress"><span style="width:47%"></span></div>
+    </section>
+
+    <section class="ec-phone ec-frame" data-ec-panel="closing" aria-label="Scheda chiusura" hidden>
+      <div class="ec-meta-top">RECENSIONE / EXTRA COIN · 14 / 15</div>
+      <div class="ec-closing">
+        <div class="ec-section-label">IL VERDETTO</div>
+        <h2>UN'IDEA<br><strong>BRILLANTE.</strong></h2>
+        <h3>DENTRO UN GIOCO<br>TROPPO POVERO.</h3>
+        <div class="ec-rule"></div>
+        <p>QUANTA NOIA SEI DISPOSTO<br>A PERDONARE IN UN VIDEOGAME?</p>
+      </div>
+      <div class="ec-progress"><span style="width:94%"></span></div>
+    </section>
+  </div>
+
+  <style>
+    #extra-coin-template-preview {
+      width: 100%;
+      display: grid;
+      gap: 16px;
+      justify-items: center;
+    }
+    #extra-coin-template-preview .viz-controls {
+      justify-content: center;
+    }
+    #extra-coin-template-preview .ec-stage {
+      width: 100%;
+      display: grid;
+      place-items: center;
+    }
+    #extra-coin-template-preview .ec-phone {
+      width: min(360px, 100%);
+      aspect-ratio: 9 / 16;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+      background: #0b0b0d;
+      color: #f2efe9;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    #extra-coin-template-preview .ec-frame:not(.is-active) {
+      display: none;
+    }
+    #extra-coin-template-preview .ec-meta-top {
+      position: absolute;
+      z-index: 5;
+      top: 46px;
+      left: 23px;
+      right: 23px;
+      font: 700 9px/1.2 Consolas, monospace;
+      letter-spacing: 1.2px;
+      color: #a6ff00;
+    }
+    #extra-coin-template-preview .ec-alert-line {
+      position: absolute;
+      top: -18px;
+      right: 25px;
+      width: 7px;
+      height: 115px;
+      transform: rotate(28deg);
+      background: #ff4d00;
+    }
+    #extra-coin-template-preview .ec-identity-art {
+      position: absolute;
+      top: 82px;
+      right: -12px;
+      width: 206px;
+      height: 224px;
+      overflow: hidden;
+      background:
+        linear-gradient(140deg, rgba(91,62,150,.95), rgba(91,62,150,.25)),
+        repeating-linear-gradient(0deg, transparent 0 17px, rgba(242,239,233,.10) 18px 19px);
+      clip-path: polygon(14% 0,100% 0,100% 100%,0 87%);
+    }
+    #extra-coin-template-preview .ec-identity-art span {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      font: 700 9px/1 Consolas, monospace;
+      letter-spacing: 2px;
+    }
+    #extra-coin-template-preview .ec-identity-art i {
+      position: absolute;
+      width: 72px;
+      height: 145px;
+      bottom: -20px;
+      border: 2px solid rgba(242,239,233,.75);
+      border-radius: 50% 50% 12% 12%;
+    }
+    #extra-coin-template-preview .ec-identity-art i:nth-of-type(1) { left: 16px; }
+    #extra-coin-template-preview .ec-identity-art i:nth-of-type(2) { left: 76px; height: 172px; }
+    #extra-coin-template-preview .ec-identity-art i:nth-of-type(3) { left: 138px; height: 126px; }
+    #extra-coin-template-preview .ec-identity-copy {
+      position: absolute;
+      z-index: 3;
+      left: 23px;
+      right: 23px;
+      top: 107px;
+    }
+    #extra-coin-template-preview .ec-kicker,
+    #extra-coin-template-preview .ec-section-label {
+      font: 700 9px/1.2 Consolas, monospace;
+      letter-spacing: 1.8px;
+      color: #a6ff00;
+    }
+    #extra-coin-template-preview .ec-identity-copy h2 {
+      margin: 10px 0 0;
+      font: 900 72px/.82 Georgia, serif;
+      letter-spacing: -5px;
+    }
+    #extra-coin-template-preview .ec-rule {
+      width: 52px;
+      height: 5px;
+      margin: 24px 0 16px;
+      background: #ff4d00;
+    }
+    #extra-coin-template-preview .ec-data {
+      margin-top: 7px;
+      font: 700 10px/1.35 Consolas, monospace;
+      letter-spacing: .5px;
+    }
+    #extra-coin-template-preview .ec-port {
+      position: absolute;
+      top: 413px;
+      left: 0;
+      font: 700 9px/1.25 Consolas, monospace;
+      letter-spacing: .7px;
+      color: #a6ff00;
+    }
+    #extra-coin-template-preview .ec-media {
+      position: absolute;
+      top: 100px;
+      left: 23px;
+      right: 23px;
+      height: 177px;
+      overflow: hidden;
+      background: #27232f;
+    }
+    #extra-coin-template-preview .ec-arcade {
+      background:
+        linear-gradient(180deg, rgba(11,11,13,.05), rgba(11,11,13,.75)),
+        linear-gradient(135deg, #5b3e96 0 38%, #3a2a66 39% 62%, #17252a 63%);
+    }
+    #extra-coin-template-preview .ec-arcade > span {
+      position: absolute;
+      top: 18px;
+      right: 15px;
+      font: 700 10px/1 Consolas, monospace;
+      letter-spacing: 2px;
+    }
+    #extra-coin-template-preview .ec-arcade b {
+      position: absolute;
+      bottom: -16px;
+      width: 58px;
+      height: 116px;
+      border-radius: 40% 40% 0 0;
+      background: #16151b;
+      border-top: 3px solid #a6ff00;
+    }
+    #extra-coin-template-preview .ec-arcade b:nth-of-type(1) { left: 28px; }
+    #extra-coin-template-preview .ec-arcade b:nth-of-type(2) { left: 125px; height: 137px; }
+    #extra-coin-template-preview .ec-arcade b:nth-of-type(3) { right: 28px; height: 98px; }
+    #extra-coin-template-preview .ec-arcade small {
+      position: absolute;
+      left: 10px;
+      bottom: 8px;
+      font: 700 7px/1 Consolas, monospace;
+      letter-spacing: .5px;
+      color: #f2efe9;
+    }
+    #extra-coin-template-preview .ec-copy-block {
+      position: absolute;
+      left: 23px;
+      right: 23px;
+      top: 344px;
+    }
+    #extra-coin-template-preview .ec-copy-block p {
+      margin: 14px 0 0;
+      font-size: 25px;
+      line-height: 1.18;
+      font-weight: 700;
+      letter-spacing: -.5px;
+    }
+    #extra-coin-template-preview em {
+      color: #a6ff00;
+      font-style: normal;
+    }
+    #extra-coin-template-preview .ec-progress {
+      position: absolute;
+      left: 23px;
+      right: 23px;
+      bottom: 25px;
+      height: 3px;
+      background: #4a4a50;
+    }
+    #extra-coin-template-preview .ec-progress span {
+      display: block;
+      height: 100%;
+      background: #a6ff00;
+    }
+    #extra-coin-template-preview .ec-thesis {
+      position: absolute;
+      top: 111px;
+      left: 23px;
+      right: 23px;
+    }
+    #extra-coin-template-preview .ec-thesis h2 {
+      margin: 16px 0 18px;
+      font: 900 38px/.98 Georgia, serif;
+      letter-spacing: -2px;
+    }
+    #extra-coin-template-preview .ec-thesis h2 strong {
+      color: #ff4d00;
+    }
+    #extra-coin-template-preview .ec-thesis p {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+    #extra-coin-template-preview .ec-meme-window {
+      display: grid;
+      place-items: center;
+      background:
+        repeating-linear-gradient(0deg, rgba(166,255,0,.08) 0 2px, transparent 2px 7px),
+        #202329;
+      border: 3px solid #a6ff00;
+    }
+    #extra-coin-template-preview .ec-meme-window > span {
+      position: absolute;
+      bottom: 9px;
+      font: 700 8px/1 Consolas, monospace;
+      letter-spacing: 1px;
+      color: #a6ff00;
+    }
+    #extra-coin-template-preview .ec-eyes {
+      display: flex;
+      gap: 3px;
+      transform: rotate(-4deg);
+    }
+    #extra-coin-template-preview .ec-eyes i {
+      position: relative;
+      width: 60px;
+      height: 26px;
+      border-radius: 50%;
+      background: #f2efe9;
+      border-top: 8px solid #ff7b36;
+    }
+    #extra-coin-template-preview .ec-eyes i::after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      top: 8px;
+      right: 8px;
+      background: #0b0b0d;
+    }
+    #extra-coin-template-preview .ec-closing {
+      position: absolute;
+      top: 122px;
+      left: 23px;
+      right: 23px;
+    }
+    #extra-coin-template-preview .ec-closing h2 {
+      margin: 22px 0 0;
+      font: 900 56px/.94 Georgia, serif;
+      letter-spacing: -3px;
+    }
+    #extra-coin-template-preview .ec-closing h2 strong {
+      color: #a6ff00;
+    }
+    #extra-coin-template-preview .ec-closing h3 {
+      margin: 24px 0 0;
+      font: 900 29px/1.05 Georgia, serif;
+      letter-spacing: -1px;
+    }
+    #extra-coin-template-preview .ec-closing p {
+      margin: 0;
+      font: 700 13px/1.3 Consolas, monospace;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 380px) {
+      #extra-coin-template-preview .ec-phone {
+        width: 320px;
+      }
+      #extra-coin-template-preview .ec-thesis h2 {
+        font-size: 33px;
+        letter-spacing: -1.7px;
+      }
+      #extra-coin-template-preview .ec-closing h2 {
+        font-size: 50px;
+        letter-spacing: -2.6px;
+      }
+    }
+  </style>
+
+  <script>
+    (() => {
+      const root = document.getElementById("extra-coin-template-preview");
+      if (!root) return;
+      const buttons = [...root.querySelectorAll("[data-ec-frame]")];
+      const panels = [...root.querySelectorAll("[data-ec-panel]")];
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const selected = button.getAttribute("data-ec-frame");
+          buttons.forEach((item) => {
+            const active = item === button;
+            item.setAttribute("aria-pressed", active ? "true" : "false");
+            item.classList.toggle("btn-primary", active);
+          });
+          panels.forEach((panel) => {
+            const active = panel.getAttribute("data-ec-panel") === selected;
+            panel.hidden = !active;
+            panel.classList.toggle("is-active", active);
+          });
+        });
+      });
+    })();
+  </script>
+</div>
