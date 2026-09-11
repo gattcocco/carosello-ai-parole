@@ -77,12 +77,13 @@ def title_document(items, frames, width, height):
 
 
 class Builder:
-    def __init__(self, model, revision):
+    def __init__(self, model, revision, base=None, prefix="prova"):
+        self.base=Path(base) if base is not None else BASE
         self.model=model
         self.w,self.h,self.fps = model['width'],model['height'],model['fps']
         self.duration=sum(s['frames'] for s in model['scenes'])
-        self.edit=BASE/'edit'; self.edit.mkdir(exist_ok=True)
-        self.tag=f'prova-v{revision:03}'
+        self.edit=self.base/'edit'; self.edit.mkdir(parents=True,exist_ok=True)
+        self.tag=f'{prefix}-v{revision:03}'
         self.titles=self.edit/f'titles-v{revision:03}'; self.titles.mkdir()
         self.root=ET.Element('mlt',LC_NUMERIC='C',version='7.36.0',producer='main_bin',root=self.edit.as_posix())
         ET.SubElement(self.root,'profile',description='Critical Inventory 1080x1920 30fps',
@@ -127,8 +128,8 @@ class Builder:
                       'kdenlive:duration':frames,'aspect_ratio':'1','force_reload':'0'},layer,start,motion)
 
     def media(self,name,media,frames,start):
-        assets=BASE/'assets';assets.mkdir(exist_ok=True)
-        src=(BASE/media['source']).resolve()
+        assets=self.base/self.model.get('media_cache','assets');assets.mkdir(parents=True,exist_ok=True)
+        src=(self.base/media['source']).resolve()
         # MP4 derivato ignorato da Git: sul clone nuovo usa la GIF sorgente.
         if not src.is_file() and src.suffix.lower()=='.mp4' and src.with_suffix('.gif').is_file():
             src=src.with_suffix('.gif')
@@ -158,7 +159,7 @@ class Builder:
             ident=s['id'];n=s['frames'];a=p[s['accent']]
             common=[self.text(s['header'],70,258,24,a,'mono',700),
                     {'x':70,'y':324,'rect':(250,6),'color':a},
-                    self.text(f'{num:02} / 04',760,258,24,a,'mono',700)]
+                    self.text(f'{num:02} / {len(self.model["scenes"]):02}',760,258,24,a,'mono',700)]
             if s['layout'] in ('narrative','reaction'):
                 media=s['media'];reaction=s.get('reaction')
                 self.media(ident+'-media',media,reaction['start_frame'] if reaction else n,start)
@@ -173,7 +174,7 @@ class Builder:
                     color=a if i==s.get('accent_line') else bone
                     self.title(f'{ident}-riga-{i+1}',[self.text(line,70,y0+i*86,size,color)],n,2+i,start,i*self.model['motion']['stagger_frames'])
                 common.append({'x':70,'y':1505,'rect':(840,4),'color':'#4A4A50'})
-                common.append({'x':70,'y':1505,'rect':(210*num,4),'color':a})
+                common.append({'x':70,'y':1505,'rect':(round(840*num/len(self.model['scenes'])),4),'color':a})
             elif s['layout']=='title':
                 for i,line in enumerate(s['lines']):
                     item=self.text(line,70,650+i*145,104,a if i==s.get('accent_line') else bone,'display',700)

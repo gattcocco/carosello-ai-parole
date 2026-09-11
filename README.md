@@ -9,6 +9,7 @@ editabili; la sua rifinitura nell'editor precede l'adozione come template defini
 
 | Voglio… | Apri |
 |---|---|
+| Vedere la rassegna della newsletter | [Showreel: prova di 53 secondi](reels/showreel-newsletter/README.md) |
 | Provare il montaggio modificabile | [Template Kdenlive](templates/reel-v1/README.md) |
 | Imparare Kdenlive da zero | [Guida al primo utilizzo](templates/reel-v1/GUIDA-PRIMO-UTILIZZO-KDENLIVE.md) |
 | Lavorare su Extra Coin | [Progetto e render v0.5](reels/extra-coin/README.md) |

@@ -1,0 +1,37 @@
+[
+  {
+    "file": "assets/raw/writers-room.png",
+    "url": "https://substack-post-media.s3.amazonaws.com/public/images/a0e26399-e13c-4c73-bf5f-65f15b3736c9_1672x941.png",
+    "article": "https://criticalcontent.substack.com/p/cabine-telefoniche-realta-virtuale",
+    "credit": "Infografica di Davide Frigoli / Critical Inventory",
+    "sha256": "082731ae05a2ef1e478310ddae7f8fbd7c89937b256c371bffeed90e461fd53f"
+  },
+  {
+    "file": "assets/raw/empire-at-sea.png",
+    "url": "https://substack-post-media.s3.amazonaws.com/public/images/a25e9ad5-7b68-4339-9d7e-4fb2c758575f_1879x997.png",
+    "article": "https://criticalcontent.substack.com/p/cabine-telefoniche-realta-virtuale",
+    "credit": "Empire at Sea, Peter Flaherty; Flaherty Pictures / UploadVR, credito riportato nella newsletter",
+    "sha256": "dc6bdcc77eda5b1a377a70b3544bd4c8a90949791b2d706b7dc469d37e00c28f"
+  },
+  {
+    "file": "assets/raw/cabina-telefonica.png",
+    "url": "https://substack-post-media.s3.amazonaws.com/public/images/2db31f45-b633-4d09-a083-66cc024223ba_1591x900.png",
+    "article": "https://criticalcontent.substack.com/p/cabine-telefoniche-realta-virtuale",
+    "credit": "Street View, immagine riportata nella newsletter",
+    "sha256": "d34ca1f8d3cce308f19a03aff627d2ce6b7f517b9da2144c9e5e66404e109b79"
+  },
+  {
+    "file": "assets/raw/gta-6.png",
+    "url": "https://substack-post-media.s3.amazonaws.com/public/images/1f0e3312-81c9-424b-b278-b1686f6cf466_1282x720.png",
+    "article": "https://criticalcontent.substack.com/p/tamagotchi-fili-rossi-e-discariche",
+    "credit": "Screenshot GTA 6 / Rockstar Games, riportato nella newsletter",
+    "sha256": "2b13130f4861b844ab42e4d01da570a34e9f7e9533124f9bf45bc25ca2f23852"
+  },
+  {
+    "file": "assets/raw/lavagna-report.png",
+    "url": "https://substack-post-media.s3.amazonaws.com/public/images/42d2d253-cafb-465a-bdf9-18c96e746d14_1887x907.png",
+    "article": "https://criticalcontent.substack.com/p/tamagotchi-fili-rossi-e-discariche",
+    "credit": "Lavagna interattiva di Davide Frigoli, screenshot riportato nella newsletter",
+    "sha256": "9e15e3ecc284549c90e1f81043eb235f752622b0239400d41918e0bae495abd0"
+  }
+]

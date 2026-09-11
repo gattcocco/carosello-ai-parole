@@ -1,0 +1,210 @@
+{
+  "name": "Critical Inventory — showreel newsletter",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "palette": {
+    "ink": "#0B0B0D",
+    "bone": "#F2EFE9",
+    "muted": "#A6A4A0",
+    "acid": "#A6FF00",
+    "nerv": "#FF4D00"
+  },
+  "fonts": {
+    "body": "Segoe UI",
+    "display": "Bodoni MT",
+    "mono": "Consolas"
+  },
+  "motion": {
+    "enter_frames": 8,
+    "stagger_frames": 2,
+    "rise_px": 24
+  },
+  "media_cache": "assets/normalized",
+  "scenes": [
+    {
+      "id": "01-hook",
+      "frames": 90,
+      "layout": "title",
+      "header": "CRITICAL INVENTORY",
+      "lines": [
+        "VIDEOGIOCHI.",
+        "LIBRI.",
+        "FILI ROSSI."
+      ],
+      "accent": "acid",
+      "accent_line": 2,
+      "label": "UNA NEWSLETTER DI DAVIDE FRIGOLI"
+    },
+    {
+      "id": "02-filo",
+      "frames": 120,
+      "layout": "intro",
+      "header": "IL FILO CHE SEGUO",
+      "lines": [
+        "Nella mia newsletter",
+        "cerco i collegamenti."
+      ],
+      "accent": "acid",
+      "accent_line": 1,
+      "label": "CULTURA / TECNOLOGIA / PERSONE"
+    },
+    {
+      "id": "03-storie",
+      "frames": 150,
+      "layout": "media",
+      "header": "CINEMA E VIDEOGIOCHI",
+      "lines": [
+        "Come cambiano le storie,",
+        "da GTA alla realtà virtuale."
+      ],
+      "accent": "acid",
+      "accent_line": 1,
+      "label": "GTA 6 → EMPIRE AT SEA",
+      "images": [
+        "gta-6.png",
+        "empire-at-sea.png"
+      ]
+    },
+    {
+      "id": "04-lavoro",
+      "frames": 150,
+      "layout": "media",
+      "header": "SCRITTURA E LAVORO CULTURALE",
+      "lines": [
+        "Chi scrive le serie.",
+        "E chi porta solo i cracker."
+      ],
+      "accent": "nerv",
+      "accent_line": 1,
+      "label": "LA MIA INFOGRAFICA / WRITERS’ ROOM",
+      "images": [
+        "writers-room.png"
+      ],
+      "gif": "01"
+    },
+    {
+      "id": "05-codice",
+      "frames": 150,
+      "layout": "media",
+      "header": "GIORNALISMO E CODICE",
+      "lines": [
+        "Trasformo notizie intricate",
+        "in strumenti da esplorare."
+      ],
+      "accent": "nerv",
+      "accent_line": 1,
+      "label": "LA MIA LAVAGNA INTERATTIVA / CASO REPORT",
+      "images": [
+        "lavagna-report.png"
+      ]
+    },
+    {
+      "id": "06-dati",
+      "frames": 150,
+      "layout": "network",
+      "header": "DATI, MAPPE, RELAZIONI",
+      "lines": [
+        "Leggo dati, mappe e reti",
+        "per capire cosa succede."
+      ],
+      "accent": "acid",
+      "accent_line": 1,
+      "label": "DATA JOURNALISM / NETWORK ANALYSIS"
+    },
+    {
+      "id": "07-web",
+      "frames": 150,
+      "layout": "web",
+      "header": "WEB INDIPENDENTE",
+      "lines": [
+        "Cerco un web fatto di idee,",
+        "anche fuori dalle piattaforme."
+      ],
+      "accent": "acid",
+      "accent_line": 1,
+      "label": "PICCOLI SITI / GRANDI POSSIBILITÀ"
+    },
+    {
+      "id": "08-libri",
+      "frames": 150,
+      "layout": "books",
+      "header": "POVERE LETTURE",
+      "lines": [
+        "Seguo la vita dei libri.",
+        "Anche quando finiscono",
+        "in discarica."
+      ],
+      "accent": "acid",
+      "accent_line": 2,
+      "label": "LE BELLE LETTERE TRATTATE MALE"
+    },
+    {
+      "id": "09-cabina",
+      "frames": 150,
+      "layout": "media",
+      "header": "STORIE FUORI ROTTA",
+      "lines": [
+        "A volte, per parlare del futuro,",
+        "parto da una telefonata."
+      ],
+      "accent": "acid",
+      "accent_line": 1,
+      "label": "EINACLEIT / ISOLA DI LEWIS",
+      "images": [
+        "cabina-telefonica.png"
+      ],
+      "gif": "02"
+    },
+    {
+      "id": "10-tesi",
+      "frames": 120,
+      "layout": "title",
+      "header": "IL PUNTO",
+      "lines": [
+        "CULTURA, TECNOLOGIA.",
+        "E LE PERSONE",
+        "IN MEZZO."
+      ],
+      "accent": "acid",
+      "accent_line": 2,
+      "label": "",
+      "display_scale_x": 0.56
+    },
+    {
+      "id": "11-cta",
+      "frames": 210,
+      "layout": "closing",
+      "header": "DAVIDE FRIGOLI / LA NEWSLETTER",
+      "lines": [
+        "Critical",
+        "Inventory"
+      ],
+      "accent": "acid",
+      "label": "LA DOMENICA MATTINA",
+      "detail_lines": [
+        "Storie, strumenti e deviazioni."
+      ],
+      "cta": "Iscriviti →",
+      "cta_detail": "Link in bio / su Substack"
+    }
+  ],
+  "gif_slots": [
+    {
+      "id": "01",
+      "start_frame": 477,
+      "frames": 33,
+      "source": "assets/raw/gif-01-cracker.gif",
+      "subject": "QUALCUNO MANGIA CRACKER",
+      "purpose": "Reaction sul lavoro invisibile nella writers’ room."
+    },
+    {
+      "id": "02",
+      "start_frame": 1227,
+      "frames": 33,
+      "source": "assets/raw/gif-02-telefono.gif",
+      "subject": "UNA TELEFONATA INFINITA",
+      "purpose": "Controcampo ironico alla cabina telefonica."
+    }
+  ]
+}
