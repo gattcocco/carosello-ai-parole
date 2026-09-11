@@ -44,3 +44,12 @@ La migrazione dei reel precedenti sarà incrementale: un reel per volta, con
 aggiornamento dei path e prova del render nello stesso cambiamento. Fino ad
 allora `pipeline/`, `testi/`, `Nuove card stile evangelion/`, `GOATS/`,
 `Screenshots/` e gli asset sparsi in root sono considerati legacy.
+
+## Episodi disponibili
+
+- [Extra Coin](extra-coin/README.md): bozza v0.5, sorgente di riferimento per narrazione e ritmo.
+- [Buco Nero](buco-nero/README.md): migrato sotto `reels/`, conserva i nomi originali dei media.
+- [Kokushobi](kokushobi/README.md): indice del materiale storico recuperato.
+
+Il [template Kdenlive condiviso](../templates/reel-v1/README.md) vive separato
+dagli episodi. Il prototipo di 22 secondi combina esempi Extra Coin e Buco Nero.

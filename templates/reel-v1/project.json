@@ -1,0 +1,117 @@
+{
+  "name": "Critical Inventory — prova editabile",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "palette": {
+    "ink": "#0B0B0D",
+    "bone": "#F2EFE9",
+    "muted": "#A6A4A0",
+    "acid": "#A6FF00",
+    "nerv": "#FF4D00"
+  },
+  "fonts": {
+    "body": "Segoe UI",
+    "display": "Bodoni MT",
+    "mono": "Consolas"
+  },
+  "motion": {
+    "enter_frames": 8,
+    "stagger_frames": 2,
+    "rise_px": 24
+  },
+  "scenes": [
+    {
+      "id": "01-narrazione",
+      "layout": "narrative",
+      "frames": 150,
+      "accent": "nerv",
+      "header": "RECENSIONE / EXTRA COIN",
+      "label": "IL PUNTO DI PARTENZA",
+      "lines": [
+        "Extra Coin mi ha annoiato.",
+        "Forse voleva proprio farlo."
+      ],
+      "accent_line": 0,
+      "media": {
+        "source": "../../reels/extra-coin/assets/screenshots/mika depressa sul divano in casa sua mondo reale.png",
+        "box": [
+          70,
+          390,
+          840,
+          473
+        ],
+        "kind": "image"
+      }
+    },
+    {
+      "id": "02-reaction",
+      "layout": "reaction",
+      "frames": 150,
+      "accent": "acid",
+      "header": "TOOL / GHOSTTY BLACKHOLE",
+      "label": "A FISSARTI",
+      "lines": [
+        "Se continui a lavorare, resta lì.",
+        "A fissarti."
+      ],
+      "accent_line": 1,
+      "media": {
+        "source": "../../reels/buco-nero/ghostty-blackhole.mp4",
+        "box": [
+          70,
+          390,
+          840,
+          630
+        ],
+        "kind": "video",
+        "in_seconds": 17
+      },
+      "reaction": {
+        "source": "../../reels/buco-nero/Suspicious Black Cat GIF.gif",
+        "box": [
+          70,
+          390,
+          840,
+          630
+        ],
+        "kind": "video",
+        "in_seconds": 0.8,
+        "start_frame": 117,
+        "frames": 33
+      }
+    },
+    {
+      "id": "03-title-card",
+      "layout": "title",
+      "frames": 150,
+      "accent": "acid",
+      "header": "GHOSTTY BLACKHOLE",
+      "label": "LINK IN CAPTION",
+      "lines": [
+        "PERCHÉ USARE UN TIMER,",
+        "QUANDO PUOI PIEGARE",
+        "LO SPAZIO-TEMPO?"
+      ],
+      "accent_line": 2
+    },
+    {
+      "id": "04-chiusura",
+      "layout": "closing",
+      "frames": 210,
+      "accent": "acid",
+      "header": "GIORNALISMO · DATI · CODICE",
+      "label": "LA NEWSLETTER",
+      "lines": [
+        "Critical",
+        "Inventory"
+      ],
+      "detail_lines": [
+        "Idee, strumenti e storie",
+        "per orientarsi meglio."
+      ],
+      "cta": "Iscriviti →",
+      "cta_detail": "Link in bio / su Substack"
+    }
+  ]
+}

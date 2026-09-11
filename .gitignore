@@ -29,3 +29,6 @@ desktop.ini
 
 # config locale dell'editor/agente
 .claude/settings.local.json
+
+# Vecchia cartella locale: solo collegamenti di compatibilità dopo la migrazione
+/BUCO NERO/

@@ -19,3 +19,12 @@ sostituisce.
 - File in `lowercase-kebab-case`, come nel resto del repo.
 - Sostituire un asset qui dentro conservando nome e proporzioni: sono
   referenziati da sito ed email.
+
+## Materiali aggiunti con il riordino dei reel
+
+- `poster/critical-inventory.png` — locandina integrale usata nel finale di Buco Nero.
+- `loghi/banner-frigoli.png` — banner originale.
+- `loghi/critical-inventory-logo-alternativo.png` — variante distinta dal logo principale.
+
+Gli originali duplicati di `Loghi DAVE` sono stati confrontati per hash e
+consolidati; i tre file sopra avevano contenuto diverso dagli asset già presenti.

@@ -63,7 +63,7 @@ Totale: circa 94 parole in 48 secondi, media 1,96 parole al secondo.
 | 10 | 00:35.5–00:40.0 | `Può anche crescere insieme / alla context window di Claude Code.` | Barra `CONTEXT 12% → 100%`; il buco nero aumenta in sincrono. | **GIF 01**, tratto che mostra la modalità token. Nessun meme: è informazione nuova. |
 | 11 | 00:40.0–00:43.5 | `È OPEN SOURCE. / SI CHIAMA GHOSTTY BLACKHOLE.` | Scheda repo: `s0xDk / ghostty-blackhole` + icona GitHub. | Nessuna GIF. Usare screenshot pulito del repository oppure title card tipografica. |
 | 12 | 00:43.5–00:48.0 | `PERCHÉ USARE UN TIMER, / QUANDO PUOI PIEGARE / LO SPAZIO-TEMPO?` | Title card finale; `SPAZIO-TEMPO` in verde terminale. Microtesto: `LINK IN CAPTION`. | **GIF 04 opzionale — macchina di Rube Goldberg** da 00:46.9 a 00:48.0. Usarla solo se non ostacola la lettura; la scelta consigliata è tipografia pura. |
-| 13 | 00:48.0–00:55.0 | `Giornalismo e codice: / full-stack writer. / Curo la newsletter Critical Inventory, / per chi scrive e sviluppa. / Iscriviti al link in bio` | Schermata personale con ritratto line art, logo Critical Inventory e glitch RGB contenuto. | Nessuna GIF. |
+| 13 | 00:48.0–00:55.0 | Testi integrati nella locandina Critical Inventory, con CTA `Iscriviti → / Link in bio / su Substack` | `../../brand/poster/critical-inventory.png` a tutto schermo, intera e ferma per 7 secondi, senza ritratto né testi sovrapposti. | Nessuna GIF. |
 
 ## Lista asset GIF
 

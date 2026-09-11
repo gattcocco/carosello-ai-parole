@@ -22,15 +22,16 @@ from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFont, ImageOps
 
 
 PROJECT = Path(__file__).resolve().parent
-REPO = PROJECT.parent
+REPO = PROJECT.parent.parent
 CACHE = REPO / ".cache" / "buco-nero"
 DIST = REPO / "dist"
 
 BLACKHOLE = PROJECT / "ghostty-blackhole.mp4"
+if not BLACKHOLE.is_file():
+    BLACKHOLE = PROJECT / "ghostty-blackhole.gif"
 QUICKSAND = PROJECT / "Sinking Days Of Our Lives GIF by Global Entertainment.gif"
 CAT = PROJECT / "Suspicious Black Cat GIF.gif"
-PORTRAIT = PROJECT / "davide-fumetto-trasparente.png"
-CRITICAL_INVENTORY = PROJECT / "Adesivo editoriale Critical Inventory.png"
+CRITICAL_INVENTORY = REPO / "brand" / "poster" / "critical-inventory.png"
 
 W, H = 1080, 1920
 FPS = 30
@@ -78,7 +79,7 @@ SCENES = (
     Scene(10, 35.5, 40.0, ("Può anche crescere insieme", "alla context window di Claude Code."), "media", 1),
     Scene(11, 40.0, 43.5, ("È OPEN SOURCE.", "SI CHIAMA", "GHOSTTY BLACKHOLE."), "repo", 2),
     Scene(12, 43.5, 48.0, ("PERCHÉ USARE UN TIMER,", "QUANDO PUOI PIEGARE", "LO SPAZIO-TEMPO?"), "final", 2),
-    Scene(13, 48.0, 55.0, ("Giornalismo e codice:", "full-stack writer.", "Curo la newsletter Critical Inventory,", "per chi scrive e sviluppa.", "Iscriviti al link in bio"), "about"),
+    Scene(13, 48.0, 55.0, (), "about"),
 )
 
 
@@ -175,9 +176,14 @@ class Renderer:
         self.cat = FrameSource(CACHE / "cat-15fps", 15)
         self.starts = [scene.start for scene in SCENES]
         self.total_frames = int(DURATION * FPS)
+        with Image.open(CRITICAL_INVENTORY) as source:
+            self.credits_poster = ImageOps.pad(
+                source.convert("RGB"), (W, H),
+                method=Image.Resampling.LANCZOS, color=BONE,
+            )
 
     def _validate(self) -> None:
-        missing = [path for path in (BLACKHOLE, QUICKSAND, CAT, PORTRAIT, CRITICAL_INVENTORY) if not path.is_file()]
+        missing = [path for path in (BLACKHOLE, QUICKSAND, CAT, CRITICAL_INVENTORY) if not path.is_file()]
         if missing:
             raise FileNotFoundError("Asset mancanti: " + ", ".join(map(str, missing)))
         for previous, current in zip(SCENES, SCENES[1:]):
@@ -413,67 +419,9 @@ class Renderer:
         draw.rectangle((SAFE_LEFT, 1325, SAFE_LEFT + 290, 1338), fill=NERV)
         tracking_text(draw, (SAFE_LEFT, 1380), "LINK IN CAPTION", font(FONT_MONO, 25), BONE, 2)
 
-    @staticmethod
-    def transparent_line_art(source: Image.Image) -> Image.Image:
-        line_art = source.convert("RGBA")
-        grayscale = ImageOps.grayscale(line_art)
-        line_art.putalpha(ImageOps.invert(grayscale))
-        return line_art
-
-    @staticmethod
-    def remove_checkerboard(source: Image.Image) -> Image.Image:
-        logo = source.convert("RGBA")
-        pixels = logo.load()
-        for y in range(logo.height):
-            for x in range(logo.width):
-                red, green, blue, alpha = pixels[x, y]
-                if alpha and max(red, green, blue) - min(red, green, blue) < 10 and min(red, green, blue) > 215:
-                    pixels[x, y] = (red, green, blue, 0)
-        return logo
-
     def draw_about(self, image: Image.Image, scene: Scene, seconds: float) -> None:
-        local = seconds - scene.start
-        overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-        draw = ImageDraw.Draw(overlay)
-
-        with Image.open(CRITICAL_INVENTORY) as source:
-            logo = self.remove_checkerboard(source)
-        logo.thumbnail((700, 440), Image.Resampling.LANCZOS)
-        logo_x = SAFE_LEFT
-        logo_y = 165
-        overlay.alpha_composite(logo, (logo_x, logo_y))
-
-        with Image.open(PORTRAIT) as source:
-            portrait = source.convert("RGBA")
-        portrait.thumbnail((500, 700), Image.Resampling.LANCZOS)
-        portrait_x = 570
-        portrait_y = 640
-        overlay.alpha_composite(portrait, (portrait_x, portrait_y))
-
-        fade = ease_out(local / 0.28)
-        body_face = fit_face(FONT_BODY_BOLD, scene.text[:2], 66, 52, 500)
-        line_height = body_face.getbbox("Ag")[3] - body_face.getbbox("Ag")[1]
-        draw.text((SAFE_LEFT, 730), scene.text[0], font=body_face, fill=BONE + (int(255 * fade),))
-        draw.text((SAFE_LEFT, 730 + line_height + 16), scene.text[1], font=body_face, fill=ACID + (int(255 * fade),))
-
-        detail_face = fit_face(FONT_BODY, scene.text[2:4], 42, 34, 500)
-        detail_height = detail_face.getbbox("Ag")[3] - detail_face.getbbox("Ag")[1]
-        for index, line in enumerate(scene.text[2:4]):
-            draw.text((SAFE_LEFT, 1000 + index * (detail_height + 14)), line, font=detail_face, fill=BONE + (int(255 * fade),))
-
-        draw.rectangle((SAFE_LEFT, 1320, SAFE_LEFT + 220, 1329), fill=NERV + (int(255 * fade),))
-        cta_face = font(FONT_MONO, 25)
-        tracking_text(draw, (SAFE_LEFT, 1380), scene.text[4].upper(), cta_face, ACID + (int(255 * fade),), 1)
-        tracking_text(draw, (SAFE_LEFT, 1530), "CRITICALINVENTORY.IT", font(FONT_MONO, 21), MUTED + (int(255 * fade),), 1)
-        image.paste(overlay, (0, 0), overlay)
-
-        # RGB split only at the card entrance, then two restrained scan bars.
-        if 0.18 <= local <= 0.42 or 3.6 <= local <= 3.72:
-            offset = 8 if local < 1 else 4
-            red, green, blue = image.split()
-            shifted = Image.merge("RGB", (ImageChops.offset(red, offset, 0), green, ImageChops.offset(blue, -offset, 0)))
-            bar_y = 760 if local < 1 else 1260
-            image.paste(shifted.crop((0, bar_y, W, bar_y + 7)), (0, bar_y))
+        # Keep the complete poster readable for the full closing card.
+        image.paste(self.credits_poster, (0, 0))
 
     def apply_glitch(self, image: Image.Image, frame_index: int) -> Image.Image:
         boundaries = [int(scene.start * FPS) for scene in SCENES[1:]]
@@ -528,7 +476,7 @@ class Renderer:
             frame = self.render_frame(int(seconds * FPS))
             frame.save(output / f"scene-{index:02d}.png", optimize=True)
             thumbs.append(frame.resize((270, 480), Image.Resampling.LANCZOS))
-        sheet = Image.new("RGB", (1080, 1440), INK)
+        sheet = Image.new("RGB", (1080, ((len(thumbs) + 3) // 4) * 480), INK)
         for index, thumb in enumerate(thumbs):
             sheet.paste(thumb, ((index % 4) * 270, (index // 4) * 480))
         sheet.save(output / "contact-sheet.jpg", quality=94, subsampling=0)
