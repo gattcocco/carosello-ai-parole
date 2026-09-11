@@ -1,42 +1,60 @@
-# Carosello AI Parole
+# Critical Inventory — caroselli e reel
 
-Pipeline per contenuti IG della serie «Le parole nuove dell'AI»: carosello, reel v1 (stile risograph crema) e reel v2 (stile Evangelion). Testi, brand manual, prompt di generazione immagini e script di montaggio.
+Repository di testi, identità visiva, asset e codice per i contenuti di Critical
+Inventory. I progetti più avanzati sono **Extra Coin** e **Buco Nero**.
+Il template Kdenlive è una prova funzionante di montaggio con testi e animazioni
+editabili; la sua rifinitura nell'editor precede l'adozione come template definitivo.
+
+## Da dove partire
+
+| Voglio… | Apri |
+|---|---|
+| Provare il montaggio modificabile | [Template Kdenlive](templates/reel-v1/README.md) |
+| Imparare Kdenlive da zero | [Guida al primo utilizzo](templates/reel-v1/GUIDA-PRIMO-UTILIZZO-KDENLIVE.md) |
+| Lavorare su Extra Coin | [Progetto e render v0.5](reels/extra-coin/README.md) |
+| Lavorare su Buco Nero | [Progetto](reels/buco-nero/README.md) · [Storyboard](reels/buco-nero/storyboard.md) |
+| Riprendere Kokushobi | [Materiale recuperato e stato](reels/kokushobi/README.md) |
+| Consultare identità e regole dei reel | [Brand asset](brand/README.md) · [Manuale reel](brand-manual-v2.md) |
+| Capire le decisioni sul template | [Consulenza](docs/consulenza-template-reel.md) |
 
 ## Struttura
 
-- `pipeline/` — script Python di montaggio
-  - `monta_card.py` — carosello 9 card 1080×1350 (brand v1)
-  - `reel.py` — reel v1, 9 scene con glitch di transizione
-  - `reel2.py` — reel v2 (attuale): scene 9:16 stile Eva, kanji card, insert GIF, endcard SEGUIMI
-  - `styleframes.py` — style-frame di validazione del brand v2
-- `Nuove card stile evangelion/` — asset generati (PNG soggetti su nero + `GIF/` per gli insert)
-- `card finali/` — carosello montato (brand v1)
-- `brand-manual-v2.md` — identità visiva corrente (palette, tipografia, montaggio, regole anti-slop)
-- `pipeline-immagini-v2.md` — prompt ChatGPT per generare gli asset (style lock + soggetti)
-- `reel-parole-ai-v2.mp4` — output corrente (non versionato: si rigenera, vedi sotto)
-- `testi/` — testi della serie: bibliografia ragionata, piano di letture per il blog, post Substack, piano del carosello con caption
-- `GOATS/` — soggetti del reel v3 (`v3-*.png`) + reference
-- `Screenshots/` — screenshot di gioco per le type card del reel v3
-- `B-Roll/` — **non versionato**: 9 clip 1920×1080 dal press kit ufficiale di *Titanium Court* (Fellow Traveller). Materiale di terzi, va riscaricato dal press kit dell'editore. Lo storyboard in `testi/storyboard-reel-mountain-goats.md` cita le clip per nome (`Game Intro.mov`, `Dragon Fight.mov`, …): servono con quei nomi esatti dentro `B-Roll/` per montare il reel v3.
-
-## Come si rigenera il reel
-
-Requisiti: Python 3 + Pillow + numpy, ffmpeg, font Liberation Serif e Noto Serif CJK.
-
-```bash
-# 1. rendering scene (una alla volta o in loop)
-for i in 0 1 2 3 4 5 6 7 8 9 10; do python3 pipeline/reel2.py $i; done
-# 2. passata glitch sulle transizioni
-python3 pipeline/reel2.py -1
-# 3. encoding
-ffmpeg -framerate 30 -i /tmp/reel2_frames/f%05d.jpg -c:v libx264 -pix_fmt yuv420p -crf 20 -movflags +faststart reel-parole-ai-v2.mp4
+```text
+brand/                  loghi, poster e manuale generale
+reels/                  episodi: extra-coin, buco-nero, indice kokushobi
+templates/reel-v1/      modello JSON, generatore e guida Kdenlive
+docs/                   consulenza, migrazione e indice storico
+pipeline/               renderer storici
+testi/                  archivio editoriale delle serie precedenti
+.cache/                 dipendenze, frame e backup locali (fuori Git)
+dist/                   esportazioni rigenerabili (fuori Git)
 ```
 
-Gli asset seguono la naming convention di `pipeline-immagini-v2.md` (`v2-<soggetto>.png`, GIF in `Nuove card stile evangelion/GIF/`). Lo script aggancia automaticamente ciò che trova: GIF mancante = scena senza insert; `v2-clanker.png` presente = la scena passa da card tipografica a card immagine.
+[Convenzioni degli episodi](reels/README.md) ·
+[Archivio dei lavori precedenti](docs/legacy.md) ·
+[Riordino e tag di archivio](docs/riordino-2026-09-11.md).
 
-## Workflow
+## Prova Kdenlive su Windows
 
-1. Nuove parole → verifica fonti → testi in `reel2.py` (lista `SCENES`)
-2. Immagini → prompt in `pipeline-immagini-v2.md` → ChatGPT → cartella asset
-3. GIF insert → GIPHY/Pexels → cartella `GIF/`
-4. Render → controllo frame → pubblicazione (audio in tendenza dall'app IG)
+1. Clona l'intero repository e installa Python 3.10+ e Kdenlive (versione
+   verificata: 26.08.0). I binari non sono inclusi in Git.
+2. Segui il [setup del template](templates/reel-v1/README.md#setup-su-un-altro-pc)
+   per indicare la cartella `bin` di Kdenlive e verificare i font.
+3. Apri `templates/reel-v1/APRI-PROVA.cmd`: genera la base se manca e apre
+   l'ultima revisione generata. Salva le modifiche manuali in una copia.
+
+Il codice produce titoli e keyframe nativi. Il lavoro manuale nell'editor non
+torna automaticamente nel JSON; le copie di lavoro e i video locali non sono
+salvati su GitHub. Nel template trovi le istruzioni per conservarli.
+
+## Lavorare sul repository
+
+`main` raccoglie il lavoro corrente. Per un intervento usa un branch temporaneo
+(`reel/<slug>` o `chore/<nome>`), integralo dopo i controlli e rimuovilo quando
+non serve più. Le revisioni di un episodio vivono nei suoi file e nella storia
+Git. I vecchi branch Extra Coin e Kokushobi sono conservati anche tramite tag.
+
+I sorgenti video derivati, le cache, i programmi e i render non vengono
+versionati. Alcune GIF e immagini storiche erano già presenti nella storia:
+il riordino le conserva. Per nuovi materiali registra fonte e condizioni d'uso
+in `assets/SOURCES.md`, secondo le convenzioni degli episodi.

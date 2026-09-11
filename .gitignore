@@ -2,13 +2,25 @@
 reel_frames/
 reel2_frames/
 *.tmp
+.cache/
+
+# ambienti e cache Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
 
 # output video: rigenerabili da pipeline/reel*.py, non versionati
 *.mp4
+dist/
 
 # B-roll di terzi: press kit Fellow Traveller, non ridistribuito (vedi README)
 *.mov
 B-Roll/
+
+# materiali grezzi di terzi per i nuovi reel (press kit, meme, footage)
+reels/*/assets/raw/*
+!reels/*/assets/raw/README.md
 
 # file di sistema
 .DS_Store
@@ -17,3 +29,6 @@ desktop.ini
 
 # config locale dell'editor/agente
 .claude/settings.local.json
+
+# Vecchia cartella locale: solo collegamenti di compatibilità dopo la migrazione
+/BUCO NERO/
