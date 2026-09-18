@@ -1,0 +1,7 @@
+python-dotenv==1.2.3
+google-genai==2.23.0
+moviepy==2.2.1
+playwright==1.63.0
+
+# playwright usa il Chrome gia' installato (channel="chrome"),
+# non scarica browser: dopo il pip install non serve 'playwright install'.

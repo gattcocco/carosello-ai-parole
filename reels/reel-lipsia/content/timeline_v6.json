@@ -1,0 +1,312 @@
+{
+  "_readme": "Timeline v6 'La discarica dei libri'. Rispetto alla v5: (1) CODICE COLORE - il bianco e nero (film didattico Coronet 1951 sull'organizzazione di una biblioteca) e' riservato al sistema, al piano e all'astrazione; il colore (Plottendorf 1991, Katlenburg, il pastore, la Trabant) ai libri veri. Di conseguenza nessuna immagine della discarica compare prima del beat 22, che e' la rivelazione: nella v5 il materiale di Plottendorf era usato dal beat 13 e bruciava lo stacco. (2) Due cartelli neri ai beat 14-15 marcano tipograficamente la cerniera riunificazione/mercato. (3) La pubblicita' DDR della Trabant 601 (1969, archive.org/details/trabant601) apre il reel e rientra al beat 13 come unica intrusione di colore nel blocco DDR: il testo dice che non c'era molto altro da comprare e sotto scorre la reclame dell'unica cosa che ti vendevano. (4) Nuovi beat 9-10 sul piano editoriale annuale, da Darnton: la letteratura pianificata come l'acciaio, 625 titoli e 11 milioni di copie per il 1989, cento titoli piu' dell'anno prima - nell'ultimo anno di esistenza della DDR. Serve a preparare la quinta legge di Ranganathan al beat 37. Tolto il vecchio beat 9 (carta/copertina/stipendio), che ripeteva piu' debolmente il beat 8. (5) Corretto il seek del beat 39: in v5 la clip L2 ripartiva da capo a meta' inquadratura. Fonti: il manifesto 30/4/1991 (Ambrosino / D'Erme); Sueddeutsche Zeitung 27-28/1/2017 (Aschenbrenner); Robert Darnton, I censori all'opera, Adelphi 2017, citato da il Giornale 31/10/2017.",
+  "width": 1080,
+  "height": 1920,
+  "fps": 25,
+  "glitch_seconds": 0.12,
+  "out_name": "discarica-dei-libri-v6.mp4",
+  "beats": [
+    {
+      "text": "Dove sono finiti i libri della DDR? La risposta è un prete e il manuale della Trabant.",
+      "highlight": "manuale della Trabant",
+      "duration": 3.6,
+      "shots": [{ "source": "trabant_ad", "kind": "clip", "seek": 24 }]
+    },
+    {
+      "text": "Ve lo spiego, partendo dalla fine.",
+      "highlight": null,
+      "duration": 2.0,
+      "shots": [{ "source": "pastore", "kind": "image", "zoom": 1.05 }]
+    },
+    {
+      "text": "Oggi, nella parrocchia di un pastore di paese, c'è una biblioteca da un milione di libri.",
+      "highlight": "un milione di libri",
+      "duration": 4.7,
+      "shots": [
+        { "source": "kat_chiesa", "kind": "image", "zoom": 1.04 },
+        { "source": "kat_libri", "kind": "image", "zoom": 1.08 }
+      ]
+    },
+    {
+      "text": "Non è una favola. È una chiesa, un granaio in pietra e centocinquanta viaggi in camion.",
+      "highlight": "granaio in pietra",
+      "duration": 4.7,
+      "shots": [
+        { "source": "kat_chiesa", "kind": "image", "zoom": 1.04 },
+        { "source": "kat_granaio", "kind": "image", "zoom": 1.06 },
+        { "source": "plo_0445", "kind": "clip" }
+      ]
+    },
+    {
+      "text": "Ma andiamo con ordine.",
+      "highlight": null,
+      "duration": 1.8,
+      "shots": [{ "source": "marco_50", "kind": "image", "zoom": 1.0 }]
+    },
+    {
+      "text": "Germania Est, 1949-1990.",
+      "highlight": "1949-1990",
+      "duration": 2.8,
+      "shots": [
+        { "source": "marco_10", "kind": "image", "zoom": 1.0 },
+        { "source": "marco_20", "kind": "image", "zoom": 1.0 }
+      ]
+    },
+    {
+      "text": "Fino al 1990, la Germania Est si vantava di essere «la terra dei lettori».",
+      "highlight": "la terra dei lettori",
+      "duration": 4.1,
+      "shots": [{ "source": "lib_0030", "kind": "clip" }]
+    },
+    {
+      "text": "Sei milioni di libri stampati ogni anno. Tiratura media, ventitremila copie.",
+      "highlight": "Sei milioni di libri",
+      "duration": 3.2,
+      "shots": [{ "source": "lib_0420", "kind": "clip" }]
+    },
+    {
+      "text": "Lo Stato sceglieva cosa pubblicare. E lo Stato pagava per farlo pubblicare.",
+      "highlight": "Lo Stato sceglieva",
+      "duration": 3.5,
+      "shots": [{ "source": "L2", "kind": "clip" }]
+    },
+    {
+      "text": "La letteratura aveva un piano annuale. Come l'acciaio.",
+      "highlight": "Come l'acciaio",
+      "duration": 3.2,
+      "shots": [{ "source": "L4", "kind": "clip" }]
+    },
+    {
+      "text": "Per il 1989: seicentoventicinque titoli, undici milioni di copie.",
+      "highlight": "undici milioni di copie",
+      "duration": 3.8,
+      "shots": [{ "source": "lib_0420", "kind": "clip", "seek": 4 }]
+    },
+    {
+      "text": "E la censura finiva per fare da pubblicità.",
+      "highlight": "fare da pubblicità",
+      "duration": 2.6,
+      "shots": [{ "source": "lib_0945", "kind": "clip" }]
+    },
+    {
+      "text": "Se un libro riusciva a uscire, qualcosa doveva dire.",
+      "highlight": "qualcosa doveva dire",
+      "duration": 2.8,
+      "shots": [{ "source": "lib_0945", "kind": "clip", "seek": 3 }]
+    },
+    {
+      "text": "Pubblicati o no, gli scrittori venivano presi sul serio.",
+      "highlight": "presi sul serio",
+      "duration": 2.8,
+      "shots": [{ "source": "lib_0030", "kind": "clip", "seek": 4 }]
+    },
+    {
+      "text": "O forse in DDR si leggeva tanto perché non c'era molto altro da comprare.",
+      "highlight": "molto altro da comprare",
+      "duration": 3.4,
+      "shots": [{ "source": "trabant_ad", "kind": "clip", "seek": 3 }]
+    },
+    {
+      "text": "Poi arriva la riunificazione.",
+      "highlight": null,
+      "duration": 2.0,
+      "shots": [{ "source": "black", "kind": "solid" }]
+    },
+    {
+      "text": "E con lei, il mercato.",
+      "highlight": "il mercato",
+      "duration": 1.8,
+      "shots": [{ "source": "black", "kind": "solid" }]
+    },
+    {
+      "text": "Aprile 1991: fiera del libro di Lipsia. Forse l'ultima della sua storia, nata nel 1470.",
+      "highlight": "forse l'ultima",
+      "duration": 4.4,
+      "shots": [{ "source": "lib_0620", "kind": "clip" }]
+    },
+    {
+      "text": "Trecentoquaranta case editrici arrivano dall'ovest. Solo ottantanove dall'est.",
+      "highlight": "ottantanove dall'est",
+      "duration": 3.4,
+      "shots": [{ "source": "lib_0620", "kind": "clip", "seek": 4.5 }]
+    },
+    {
+      "text": "I tascabili occidentali invadono gli scaffali.",
+      "highlight": "invadono gli scaffali",
+      "duration": 2.4,
+      "shots": [{ "source": "lib_0140", "kind": "clip" }]
+    },
+    {
+      "text": "E cosa comprano i lettori? Manuali su come pagare meno tasse. E su come fare il primo milione.",
+      "highlight": "come fare il primo milione",
+      "duration": 4.6,
+      "shots": [{ "source": "L3", "kind": "clip" }]
+    },
+    {
+      "text": "Le case editrici dell'est licenziano in massa.",
+      "highlight": "licenziano in massa",
+      "duration": 2.4,
+      "shots": [{ "source": "lib_0945", "kind": "clip", "seek": 5 }]
+    },
+    {
+      "text": "Una passa da centottanta a cinquantacinque dipendenti.",
+      "highlight": "da centottanta a cinquantacinque",
+      "duration": 2.8,
+      "shots": [{ "source": "lib_0140", "kind": "clip", "seek": 4 }]
+    },
+    {
+      "text": "E i libri che restano invenduti?",
+      "highlight": null,
+      "duration": 2.2,
+      "shots": [{ "source": "P4", "kind": "clip" }]
+    },
+    {
+      "text": "Finiscono in una discarica, pochi chilometri a sud di Lipsia.",
+      "highlight": "una discarica",
+      "duration": 2.8,
+      "shots": [{ "source": "plo_0740", "kind": "clip", "seek": 2 }]
+    },
+    {
+      "text": "Non copie danneggiate. Tirature intere, appena stampate.",
+      "highlight": "Tirature intere",
+      "duration": 2.6,
+      "shots": [{ "source": "plo_0245", "kind": "clip" }]
+    },
+    {
+      "text": "C'è un romanzo. Una raccolta di poesie. Un premio Nobel.",
+      "highlight": "Un premio Nobel",
+      "duration": 3.0,
+      "shots": [
+        { "source": "plo_0415", "kind": "clip" },
+        { "source": "plo_0545", "kind": "clip" }
+      ]
+    },
+    {
+      "text": "E, sì, il manuale per riparare la Trabant.",
+      "highlight": "manuale per riparare la Trabant",
+      "duration": 2.4,
+      "shots": [{ "source": "trabant", "kind": "image", "zoom": 1.08 }]
+    },
+    {
+      "text": "Nessuno li rivuole. Nemmeno come carta straccia.",
+      "highlight": null,
+      "duration": 2.6,
+      "shots": [{ "source": "P4", "kind": "clip", "seek": 1.5 }]
+    },
+    {
+      "text": "Erano sopravvissuti alla censura. Non al mercato.",
+      "highlight": "Non al mercato",
+      "duration": 3.6,
+      "shots": [
+        { "source": "P1", "kind": "clip", "seek": 1.0 },
+        { "source": "P3", "kind": "clip" }
+      ]
+    },
+    {
+      "text": "Maggio 1991. Una foto finisce sul giornale.",
+      "highlight": null,
+      "duration": 2.2,
+      "shots": [{ "source": "P3", "kind": "clip", "seek": 1.5 }]
+    },
+    {
+      "text": "La vede un pastore di paese: Martin Weskott.",
+      "highlight": "Martin Weskott",
+      "duration": 2.6,
+      "shots": [{ "source": "pastore", "kind": "image", "zoom": 1.05 }]
+    },
+    {
+      "text": "Non un bibliofilo radical chic. Un pastore che guida il furgone.",
+      "highlight": "il furgone",
+      "duration": 2.8,
+      "shots": [{ "source": "plo_0646", "kind": "clip" }]
+    },
+    {
+      "text": "Va alla discarica. Riempie l'auto. Torna.",
+      "highlight": null,
+      "duration": 3.0,
+      "shots": [
+        { "source": "plo_0628", "kind": "clip" },
+        { "source": "plo_0631", "kind": "clip" }
+      ]
+    },
+    {
+      "text": "Poi non basta più il furgone. Arrivano i camion. Centocinquanta viaggi.",
+      "highlight": "Centocinquanta viaggi",
+      "duration": 3.2,
+      "shots": [{ "source": "plo_0445", "kind": "clip", "seek": 1.0 }]
+    },
+    {
+      "text": "I libri riempiono prima un refettorio del Milleduecento.",
+      "highlight": "del Milleduecento",
+      "duration": 3.9,
+      "shots": [
+        { "source": "kat_merian", "kind": "image", "zoom": 1.05 },
+        { "source": "kat_cripta", "kind": "image", "zoom": 1.06 },
+        { "source": "kat_refettorio", "kind": "image", "zoom": 1.06 }
+      ]
+    },
+    {
+      "text": "Poi un intero granaio in pietra.",
+      "highlight": "granaio in pietra",
+      "duration": 3.0,
+      "shots": [
+        { "source": "kat_burgberg", "kind": "image", "zoom": 1.04 },
+        { "source": "kat_granaio", "kind": "image", "zoom": 1.08 }
+      ]
+    },
+    {
+      "text": "Oggi sono un milione. Ogni domenica, con una donazione, si possono ancora portare via.",
+      "highlight": "un milione",
+      "duration": 4.1,
+      "shots": [
+        { "source": "kat_libri", "kind": "image", "zoom": 1.1 },
+        { "source": "pastore", "kind": "image", "zoom": 1.05 }
+      ]
+    },
+    {
+      "text": "Nel 1931 un bibliotecario indiano scrisse: «la biblioteca è un organismo che cresce».",
+      "highlight": "un organismo che cresce",
+      "duration": 4.8,
+      "shots": [
+        { "source": "lib_0945", "kind": "clip", "seek": 1.5 },
+        { "source": "lib_0030", "kind": "clip", "seek": 1.5 }
+      ]
+    },
+    {
+      "text": "Nel 1991, a sud di Lipsia, quell'organismo è finito in discarica.",
+      "highlight": "in discarica",
+      "duration": 3.6,
+      "shots": [{ "source": "plo_0215", "kind": "clip", "seek": 1.5 }]
+    },
+    {
+      "text": "Non per una dittatura: la dittatura quei libri li aveva fatti stampare.",
+      "highlight": "li aveva fatti stampare",
+      "duration": 4.2,
+      "shots": [{ "source": "L2", "kind": "clip", "seek": 0.5 }]
+    },
+    {
+      "text": "Per il mercato. E per la letteratura di consumo.",
+      "highlight": "letteratura di consumo",
+      "duration": 3.0,
+      "shots": [{ "source": "lib_0140", "kind": "clip", "seek": 1.5 }]
+    },
+    {
+      "text": "L'organismo non è morto. Ha cambiato custode.",
+      "highlight": "cambiato custode",
+      "duration": 3.4,
+      "shots": [{ "source": "kat_libri", "kind": "image", "zoom": 1.08 }]
+    },
+    {
+      "text": "Di storie così — tra censura, mercato e libri — parlo su Critical Inventory.",
+      "highlight": "Critical Inventory",
+      "duration": 4.1,
+      "shots": [{ "source": "black", "kind": "solid" }]
+    },
+    {
+      "text": null,
+      "highlight": null,
+      "duration": 3.0,
+      "shots": [{ "source": "cta_newsletter", "kind": "image", "zoom": 1.0 }]
+    }
+  ]
+}

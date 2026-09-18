@@ -1,0 +1,109 @@
+{
+  "_readme": "Timeline del primo montaggio 'La discarica dei libri' (vedi primo-montaggio.md). Letta da scripts/build_discarica.py. fps e size sono il master del brand (brand-manual-v2.md) tranne fps, qui 25 come richiesto esplicitamente dal documento del reel.",
+  "width": 1080,
+  "height": 1920,
+  "fps": 25,
+  "segments": [
+    {
+      "id": 1,
+      "type": "title",
+      "start": 0,
+      "duration": 3,
+      "title_text": "APRILE 1991",
+      "caption": "Aprile millenovecentonovantuno.",
+      "highlight": null
+    },
+    {
+      "id": 2,
+      "type": "clip",
+      "start": 3,
+      "duration": 5,
+      "asset": "../assets/clips/P1.mp4",
+      "caption": "A pochi chilometri da Lipsia, tonnellate di libri appena stampati finiscono in una discarica a cielo aperto.",
+      "highlight": "discarica a cielo aperto"
+    },
+    {
+      "id": 3,
+      "type": "clip",
+      "start": 8,
+      "duration": 5,
+      "asset": "../assets/clips/L1.mp4",
+      "caption": "Nessuno li vuole. Nemmeno come carta straccia.",
+      "highlight": "Nessuno li vuole"
+    },
+    {
+      "id": 4,
+      "type": "clip",
+      "start": 13,
+      "duration": 5,
+      "asset": "../assets/clips/P2.mp4",
+      "caption": "Dopo la riunificazione, l'editoria della Germania Est viene travolta dal mercato.",
+      "highlight": "travolta dal mercato"
+    },
+    {
+      "id": 5,
+      "type": "clip",
+      "start": 18,
+      "duration": 5,
+      "asset": "../assets/clips/L2.mp4",
+      "caption": "Quella che era chiamata «la terra dei lettori»…",
+      "highlight": "la terra dei lettori"
+    },
+    {
+      "id": 6,
+      "type": "clip",
+      "start": 23,
+      "duration": 5,
+      "asset": "../assets/clips/P3.mp4",
+      "caption": "…perde in pochi mesi case editrici, autori e pubblico.",
+      "highlight": "case editrici, autori e pubblico"
+    },
+    {
+      "id": 7,
+      "type": "clip",
+      "start": 28,
+      "duration": 5,
+      "asset": "../assets/clips/L3.mp4",
+      "caption": "Nel maggio del 1991, una fotografia sulla Süddeutsche Zeitung mostra la discarica di Plottendorf.",
+      "highlight": "Plottendorf"
+    },
+    {
+      "id": 8,
+      "type": "clip",
+      "start": 33,
+      "duration": 5,
+      "asset": "../assets/clips/P4.mp4",
+      "caption": "Il pastore Martin Weskott la vede e parte per salvare i libri.",
+      "highlight": "Martin Weskott"
+    },
+    {
+      "id": 9,
+      "type": "clip",
+      "start": 38,
+      "duration": 5,
+      "asset": "../assets/clips/L4.mp4",
+      "caption": "Un canone può scomparire in un momento.",
+      "highlight": "Un canone può scomparire"
+    },
+    {
+      "id": 10,
+      "type": "freeze",
+      "start": 43,
+      "duration": 4,
+      "asset": "../assets/clips/P4.mp4",
+      "freeze_at": 4.9,
+      "label": "PLOTTENDORF — 22 LUGLIO 1991",
+      "caption": "Eppure continuiamo a cercarlo, come se ne conservassimo una traccia.",
+      "highlight": "continuiamo a cercarlo"
+    },
+    {
+      "id": 11,
+      "type": "endcard",
+      "start": 47,
+      "duration": 3,
+      "title_text": "CRITICAL INVENTORY",
+      "caption": "Ogni lettore è un cacciatore di paradisi perduti.",
+      "highlight": "cacciatore di paradisi perduti"
+    }
+  ]
+}

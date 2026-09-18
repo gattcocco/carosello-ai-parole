@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Captions — reel Lipsia</title>
+<style>
+  /* Il font e' quello gia' usato da build_standup.py (C:/Windows/Fonts/BOD_CB.TTF).
+     local() lo prende dal sistema senza copiarlo nel progetto. */
+  @font-face{
+    font-family:"ReelDisplay";
+    src: local("Bodoni MT Condensed Bold"),
+         local("BodoniMT-CondensedBold"),
+         local("Bodoni MT Condensed"),
+         local("Bodoni MT");
+    font-weight:700;
+    font-style:normal;
+  }
+
+  :root{
+    /* Stessi valori di build_standup.py */
+    --bone:#F2EFE9;
+    --acid:#A6FF00;
+    --ink:11,11,13;
+    --scrim-alpha:0.647;   /* 165/255 */
+    --safe:940px;          /* SAFE_WIDTH */
+    --bottom:260px;        /* height - scrim_h - y_pos */
+    --pad-y:50px;          /* pad_y */
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html,body{
+    width:1080px;height:1920px;
+    background:transparent;         /* serve a omit_background di Playwright */
+    overflow:hidden;
+  }
+
+  body{
+    font-family:"ReelDisplay","Bodoni MT",serif;
+    font-weight:700;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  #stage{position:relative;width:1080px;height:1920px;}
+
+  .beat{
+    position:absolute;left:0;right:0;bottom:var(--bottom);
+    opacity:0;visibility:hidden;
+  }
+
+  .scrim{
+    position:absolute;inset:0;
+    background:rgba(var(--ink),var(--scrim-alpha));
+  }
+
+  .lines{
+    position:relative;
+    width:var(--safe);margin:0 auto;
+    padding:var(--pad-y) 0;
+    text-align:center;
+    color:var(--bone);
+  }
+
+  /* Ogni parola e' una finestrella: l'interno sale da sotto e viene
+     ritagliato finche' non e' entrato. padding/margin compensano i
+     discendenti (g, p, q) che altrimenti verrebbero tagliati. */
+  .w{
+    display:inline-block;overflow:hidden;vertical-align:bottom;
+    padding-bottom:0.20em;margin-bottom:-0.20em;
+  }
+  .ww{
+    display:inline-block;position:relative;
+    will-change:transform,opacity;
+  }
+
+  /* Evidenziazione: il verde acido non appare, entra con una passata
+     da sinistra sopra la parola gia' leggibile in osso. Il tratto
+     evidenziato puo' essere una parte di parola, cosi' la punteggiatura
+     attaccata resta in osso e senza spazio. */
+  .run{display:inline-block;position:relative;}
+  .acid{
+    position:absolute;left:0;top:0;
+    color:var(--acid);white-space:pre;
+    clip-path:inset(0 100% 0 0);
+  }
+
+  /* Solo per l'anteprima nel browser, invisibile nel render */
+  #hud{
+    position:fixed;left:16px;top:16px;z-index:99;
+    font:600 20px/1.4 ui-monospace,monospace;color:#A6FF00;
+    background:rgba(11,11,13,.8);padding:10px 14px;border-radius:6px;
+    white-space:pre;display:none;
+  }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div id="hud"></div>
+
+<script>
+(() => {
+  "use strict";
+
+  const WORD_DUR   = 0.30;   // durata entrata di una singola parola
+  const IN_FADE    = 0.22;   // dissolvenza in ingresso del blocco
+  const OUT_FADE   = 0.18;   // dissolvenza in uscita del blocco
+  const WIPE_DUR   = 0.34;   // passata del verde sull'evidenziazione
+  const WIPE_STEP  = 0.06;   // sfasamento fra parole evidenziate
+  const RISE_EM    = 0.55;   // quanto sale la parola, in em
+  const MAX_FONT   = 92, MIN_FONT = 52, FONT_STEP = 4, MAX_LINES = 4;
+  const LINE_RATIO = 1.4454; // (ascent+descent)*1.22 / size, da PIL
+
+  const stage = document.getElementById("stage");
+  const hud   = document.getElementById("hud");
+
+  const clamp01     = x => x < 0 ? 0 : x > 1 ? 1 : x;
+  const easeOutCubic = x => 1 - Math.pow(1 - x, 3);
+
+  let beats = [];
+  let totalDuration = 0;
+
+  /** Divide il testo in parole, e ogni parola nei tratti dentro e fuori
+   *  l'evidenziazione.
+   *
+   *  Diversamente da split_highlight() in build_standup.py, il confine
+   *  dell'evidenziazione non spezza la parola in due token separati da uno
+   *  spazio: in "...della Trabant?" con evidenziazione "manuale della
+   *  Trabant", il punto interrogativo resta attaccato a Trabant e solo la
+   *  parte evidenziata prende il verde. */
+  function tokenize(text, highlight) {
+    let hlStart = -1, hlEnd = -1;
+    if (highlight) {
+      const idx = text.toLowerCase().indexOf(highlight.toLowerCase());
+      if (idx >= 0) { hlStart = idx; hlEnd = idx + highlight.length; }
+    }
+    const inHl = k => k >= hlStart && k < hlEnd;
+
+    const words = [];
+    let i = 0;
+    while (i < text.length) {
+      if (/\s/.test(text[i])) { i++; continue; }
+
+      let j = i;
+      while (j < text.length && !/\s/.test(text[j])) j++;
+
+      const runs = [];
+      let k = i;
+      while (k < j) {
+        const flag = inHl(k);
+        let m = k;
+        while (m < j && inHl(m) === flag) m++;
+        runs.push({ text: text.slice(k, m), hl: flag });
+        k = m;
+      }
+      words.push({ runs, hl: runs.some(r => r.hl) });
+      i = j;
+    }
+    return words;
+  }
+
+  function buildBeat(beat) {
+    // Beat muto: "text" vuoto o null significa nessuna didascalia, quindi
+    // nemmeno la fascia scura. Serve alle card che portano gia' la loro
+    // grafica, come quella finale della newsletter.
+    const raw = typeof beat.text === "string" ? beat.text.trim() : "";
+    if (!raw) return { silent: true, nodes: [], dur: beat.duration };
+
+    const el    = document.createElement("div");
+    const scrim = document.createElement("div");
+    const lines = document.createElement("div");
+    el.className = "beat"; scrim.className = "scrim"; lines.className = "lines";
+    el.append(scrim, lines);
+
+    const words = tokenize(beat.text, beat.highlight);
+    const nodes = [];
+
+    words.forEach((w, i) => {
+      const outer = document.createElement("span");
+      const inner = document.createElement("span");
+      outer.className = "w"; inner.className = "ww";
+
+      const acids = [];
+      for (const run of w.runs) {
+        if (!run.hl) {
+          const plain = document.createElement("span");
+          plain.textContent = run.text;
+          inner.appendChild(plain);
+          continue;
+        }
+        // tratto evidenziato: osso sotto, verde sopra che entra con la passata
+        const holder = document.createElement("span");
+        holder.className = "run";
+        const base = document.createElement("span");
+        base.textContent = run.text;
+        const acid = document.createElement("span");
+        acid.className = "acid";
+        acid.textContent = run.text;
+        holder.append(base, acid);
+        inner.appendChild(holder);
+        acids.push(acid);
+      }
+
+      outer.appendChild(inner);
+      lines.appendChild(outer);
+      if (i < words.length - 1) lines.appendChild(document.createTextNode(" "));
+      nodes.push({ inner, acids, hl: w.hl });
+    });
+
+    stage.appendChild(el);
+    return { el, lines, nodes, text: beat.text, dur: beat.duration };
+  }
+
+  /** Rimpicciolisce finche' il testo non sta in MAX_LINES righe.
+   *  Equivalente del ciclo font_size -= 4 in caption_overlay(). */
+  function fitFont(b) {
+    let size = MAX_FONT, lineCount = 0;
+    for (; size >= MIN_FONT; size -= FONT_STEP) {
+      const lh = Math.round(size * LINE_RATIO);
+      b.lines.style.fontSize   = size + "px";
+      b.lines.style.lineHeight = lh + "px";
+      lineCount = Math.round((b.lines.clientHeight - 2 * 50) / lh);
+      if (lineCount <= MAX_LINES) break;
+    }
+    if (size < MIN_FONT) {
+      size = MIN_FONT;
+      const lh = Math.round(size * LINE_RATIO);
+      b.lines.style.fontSize   = size + "px";
+      b.lines.style.lineHeight = lh + "px";
+      lineCount = Math.round((b.lines.clientHeight - 2 * 50) / lh);
+    }
+    b.fontSize  = size;
+    b.lineCount = lineCount;
+    b.overflow  = lineCount > MAX_LINES;   // non ci sta nemmeno al corpo minimo
+    return size;
+  }
+
+  /** Distribuisce le entrate delle parole dentro il tempo disponibile:
+   *  su un beat corto lo sfasamento si stringe invece di sforare. */
+  function scheduleWords(b) {
+    const n = b.nodes.length;
+    const budget = Math.min(0.60 * b.dur, 1.0);
+    const stagger = n > 1
+      ? Math.max(0.012, (budget - WORD_DUR) / (n - 1))
+      : 0;
+
+    b.nodes.forEach((node, i) => { node.delay = i * stagger; });
+
+    // La passata verde parte quando l'ultima parola evidenziata e' arrivata.
+    const hlIdx = b.nodes.map((nd, i) => nd.hl ? i : -1).filter(i => i >= 0);
+    if (hlIdx.length) {
+      const wipeStart = b.nodes[hlIdx[hlIdx.length - 1]].delay + WORD_DUR * 0.75;
+      hlIdx.forEach((idx, j) => { b.nodes[idx].wipeDelay = wipeStart + j * WIPE_STEP; });
+    }
+  }
+
+  window.setTimeline = function (data) {
+    stage.innerHTML = "";
+    beats = [];
+    let cursor = 0;
+
+    for (const beat of data.beats) {
+      const b = buildBeat(beat);
+      b.start = cursor;
+      cursor += beat.duration;
+      beats.push(b);
+    }
+    totalDuration = cursor;
+
+    for (const b of beats) { if (!b.silent) { fitFont(b); scheduleWords(b); } }
+
+    window.__totalDuration = totalDuration;
+    window.__ready = true;
+    window.seek(0);
+    return { beats: beats.length, duration: totalDuration };
+  };
+
+  /** Misure di ogni beat dopo l'impaginazione, per check_timeline.py.
+   *  Sono i numeri veri del browser, non una stima. */
+  window.measure = function () {
+    return beats.map((b, i) => {
+      if (b.silent) return { index: i, silent: true, duration: b.dur };
+      const lastDelay = b.nodes.length
+        ? Math.max(...b.nodes.map(n => n.delay))
+        : 0;
+      return {
+        index: i,
+        fontSize: b.fontSize,
+        lineCount: b.lineCount,
+        overflow: b.overflow,
+        words: b.nodes.length,
+        scrimHeight: b.el.offsetHeight,
+        scrimTop: 1920 - 260 - b.el.offsetHeight,
+        scrimBottom: 1920 - 260,
+        entranceEnd: lastDelay + WORD_DUR,   // quando l'ultima parola e' arrivata
+        duration: b.dur,
+      };
+    });
+  };
+
+  /** Porta l'animazione all'istante t e la lascia ferma li'.
+   *  Nessuna transizione CSS: tutto e' funzione di t, quindi lo stesso t
+   *  produce sempre lo stesso fotogramma. */
+  window.seek = function (t) {
+    for (const b of beats) {
+      if (b.silent) continue;
+      const local = t - b.start;
+
+      if (local < 0 || local >= b.dur) {
+        if (b.el.style.visibility !== "hidden") {
+          b.el.style.visibility = "hidden";
+          b.el.style.opacity = "0";
+        }
+        continue;
+      }
+
+      b.el.style.visibility = "visible";
+
+      let alpha = 1;
+      if (local < IN_FADE) {
+        alpha = easeOutCubic(local / IN_FADE);
+      } else if (local > b.dur - OUT_FADE) {
+        alpha = 1 - easeOutCubic((local - (b.dur - OUT_FADE)) / OUT_FADE);
+      }
+      b.el.style.opacity = String(clamp01(alpha));
+
+      for (const node of b.nodes) {
+        const p = easeOutCubic(clamp01((local - node.delay) / WORD_DUR));
+        node.inner.style.transform = "translateY(" + ((1 - p) * RISE_EM).toFixed(4) + "em)";
+        node.inner.style.opacity = p.toFixed(4);
+
+        if (node.acids.length) {
+          const q = easeOutCubic(clamp01((local - node.wipeDelay) / WIPE_DUR));
+          const inset = "inset(0 " + ((1 - q) * 100).toFixed(2) + "% 0 0)";
+          for (const acid of node.acids) acid.style.clipPath = inset;
+        }
+      }
+    }
+  };
+
+  // ---- Anteprima nel browser -------------------------------------------
+  // Se nessuno inietta la timeline (cioe' non e' il renderer a guidare),
+  // la carica da sola e la fa girare in loop, con un HUD di controllo.
+  document.addEventListener("DOMContentLoaded", async () => {
+    if (window.__RENDER__ || window.__ready) return;
+    let data;
+    try {
+      const res = await fetch("../content/timeline_v4.json");
+      data = await res.json();
+    } catch (err) {
+      hud.style.display = "block";
+      hud.textContent = "Anteprima non disponibile da file://\nUsa: python scripts/render_captions.py --preview";
+      return;
+    }
+    await document.fonts.ready;
+    window.setTimeline(data);
+
+    hud.style.display = "block";
+    const t0 = performance.now();
+    (function loop() {
+      const t = ((performance.now() - t0) / 1000) % totalDuration;
+      window.seek(t);
+      hud.textContent = t.toFixed(2).padStart(6) + " / " + totalDuration.toFixed(2) + " s";
+      requestAnimationFrame(loop);
+    })();
+  });
+})();
+</script>
+</body>
+</html>
