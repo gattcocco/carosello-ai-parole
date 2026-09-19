@@ -19,8 +19,8 @@
       "shots": [{ "source": "pastore", "kind": "image", "zoom": 1.05 }]
     },
     {
-      "text": "Oggi, nella parrocchia di un pastore di paese, c'è una biblioteca da un milione di libri.",
-      "highlight": "un milione di libri",
+      "text": "Oggi, nella parrocchia di un pastore di paese, c'è una biblioteca da 1 milione di libri.",
+      "highlight": "1 milione di libri",
       "duration": 4.7,
       "shots": [
         { "source": "kat_chiesa", "kind": "image", "zoom": 1.04 },
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "text": "Non è una favola. È una chiesa, un granaio in pietra e centocinquanta viaggi in camion.",
+      "text": "Non è una favola. È una chiesa, un granaio in pietra e 150 viaggi in camion.",
       "highlight": "granaio in pietra",
       "duration": 4.7,
       "shots": [
@@ -59,8 +59,8 @@
       "shots": [{ "source": "lib_0030", "kind": "clip" }]
     },
     {
-      "text": "Sei milioni di libri stampati ogni anno. Tiratura media, ventitremila copie.",
-      "highlight": "Sei milioni di libri",
+      "text": "6 milioni di libri stampati ogni anno. Tiratura media, 23.000 copie.",
+      "highlight": "6 milioni di libri",
       "duration": 3.2,
       "shots": [{ "source": "lib_0420", "kind": "clip" }]
     },
@@ -77,8 +77,8 @@
       "shots": [{ "source": "L4", "kind": "clip" }]
     },
     {
-      "text": "Per il 1989: seicentoventicinque titoli, undici milioni di copie.",
-      "highlight": "undici milioni di copie",
+      "text": "Per il 1989: 625 titoli, 11 milioni di copie.",
+      "highlight": "11 milioni di copie",
       "duration": 3.8,
       "shots": [{ "source": "lib_0420", "kind": "clip", "seek": 4 }]
     },
@@ -119,14 +119,14 @@
       "shots": [{ "source": "black", "kind": "solid" }]
     },
     {
-      "text": "Aprile 1991: fiera del libro di Lipsia. Forse l'ultima della sua storia, nata nel 1470.",
-      "highlight": "forse l'ultima",
+      "text": "Aprile 1991: fiera del libro di Lipsia. Nata nel 1470, tutti pensano sia arrivata la sua ora.",
+      "highlight": "fiera del libro di Lipsia",
       "duration": 4.4,
       "shots": [{ "source": "lib_0620", "kind": "clip" }]
     },
     {
-      "text": "Trecentoquaranta case editrici arrivano dall'ovest. Solo ottantanove dall'est.",
-      "highlight": "ottantanove dall'est",
+      "text": "340 case editrici arrivano dall'ovest. Solo 89 dall'est.",
+      "highlight": "Solo 89 dall'est",
       "duration": 3.4,
       "shots": [{ "source": "lib_0620", "kind": "clip", "seek": 4.5 }]
     },
@@ -137,8 +137,8 @@
       "shots": [{ "source": "lib_0140", "kind": "clip" }]
     },
     {
-      "text": "E cosa comprano i lettori? Manuali su come pagare meno tasse. E su come fare il primo milione.",
-      "highlight": "come fare il primo milione",
+      "text": "E cosa comprano i lettori? Manuali per fare il primo milione di marchi. E Ken Follett.",
+      "highlight": "Ken Follett",
       "duration": 4.6,
       "shots": [{ "source": "L3", "kind": "clip" }]
     },
@@ -149,8 +149,8 @@
       "shots": [{ "source": "lib_0945", "kind": "clip", "seek": 5 }]
     },
     {
-      "text": "Una passa da centottanta a cinquantacinque dipendenti.",
-      "highlight": "da centottanta a cinquantacinque",
+      "text": "Una passa da 180 a 55 dipendenti.",
+      "highlight": "da 180 a 55",
       "duration": 2.8,
       "shots": [{ "source": "lib_0140", "kind": "clip", "seek": 4 }]
     },
@@ -194,8 +194,8 @@
       "shots": [{ "source": "P4", "kind": "clip", "seek": 1.5 }]
     },
     {
-      "text": "Erano sopravvissuti alla censura. Non al mercato.",
-      "highlight": "Non al mercato",
+      "text": "Erano sopravvissuti alla censura. Ma non al mercato.",
+      "highlight": "Ma non al mercato",
       "duration": 3.6,
       "shots": [
         { "source": "P1", "kind": "clip", "seek": 1.0 },
@@ -230,8 +230,8 @@
       ]
     },
     {
-      "text": "Poi non basta più il furgone. Arrivano i camion. Centocinquanta viaggi.",
-      "highlight": "Centocinquanta viaggi",
+      "text": "Poi non basta più il furgone. Arrivano i camion. 150 viaggi.",
+      "highlight": "150 viaggi",
       "duration": 3.2,
       "shots": [{ "source": "plo_0445", "kind": "clip", "seek": 1.0 }]
     },
@@ -255,8 +255,8 @@
       ]
     },
     {
-      "text": "Oggi sono un milione. Ogni domenica, con una donazione, si possono ancora portare via.",
-      "highlight": "un milione",
+      "text": "Oggi sono 1 milione. Ogni domenica, con una donazione, si possono ancora portare via.",
+      "highlight": "1 milione",
       "duration": 4.1,
       "shots": [
         { "source": "kat_libri", "kind": "image", "zoom": 1.1 },
@@ -285,19 +285,19 @@
       "shots": [{ "source": "L2", "kind": "clip", "seek": 0.5 }]
     },
     {
-      "text": "Per il mercato. E per la letteratura di consumo.",
-      "highlight": "letteratura di consumo",
+      "text": "Ma per l'arrivo del mercato. Libero, e spietato.",
+      "highlight": "libero, e spietato",
       "duration": 3.0,
       "shots": [{ "source": "lib_0140", "kind": "clip", "seek": 1.5 }]
     },
     {
-      "text": "L'organismo non è morto. Ha cambiato custode.",
-      "highlight": "cambiato custode",
+      "text": "Tuttavia i libri non muoiono, cambiano solo custode.",
+      "highlight": "cambiano solo custode",
       "duration": 3.4,
       "shots": [{ "source": "kat_libri", "kind": "image", "zoom": 1.08 }]
     },
     {
-      "text": "Di storie così — tra censura, mercato e libri — parlo su Critical Inventory.",
+      "text": "Altre storie come questa, tra libri e potere, le trovi su Critical Inventory.",
       "highlight": "Critical Inventory",
       "duration": 4.1,
       "shots": [{ "source": "black", "kind": "solid" }]
