@@ -308,7 +308,75 @@ sullo standard output no.
 
 ---
 
-## 9. Cosa manca
+## 9. Pubblicazione
+
+Tre cose che si decidono dopo il render e che il video non contiene.
+
+### La copertina non e' un fotogramma del reel
+
+La griglia del profilo **ritaglia** il 9:16. La fascia delle didascalie sta in
+basso, quindi qualunque fotogramma preso dal video perde il testo nel ritaglio.
+E l'ultimo fotogramma — la card della newsletter — e' la scelta peggiore: nella
+griglia dice «pubblicita'» a chi non ha ancora guardato niente.
+
+`compose_cover.py` costruisce copertine apposta, con tre accorgimenti:
+
+- **titolo centrato verticalmente**, cosi' sopravvive a qualunque ritaglio;
+- **velo scuro calcolato**, non fisso: misura la luminosita' dietro il blocco di
+  testo e la porta al valore leggibile. Su footage gia' buio resta a 60/255, su
+  un fotogramma chiaro sale a 130. Un velo fisso spegneva le immagini scure;
+- **etichetta «PARTE 1 / PARTE 2»** in verde spaziato sopra il titolo, quando il
+  pezzo e' diviso: nella griglia si legge che sono una coppia.
+
+Scegliere lo sfondo guardandolo **in miniatura**, non a piena risoluzione. Un
+campo largo della discarica a dimensione griglia diventa carta astratta; una
+foto con una figura umana si legge subito.
+
+E la parola in verde va sul cortocircuito, non sull'informazione: «LA
+**DISCARICA** DEI LIBRI DI LIPSIA» ferma lo scroll, «DI LIPSIA» in verde no.
+
+### Dividere in due parti
+
+Se il pezzo supera il minuto e mezzo conviene spezzarlo: due reel sono due
+occasioni di distribuzione, e ciascuno sta meglio nel formato.
+
+**Il taglio va al confine esatto di un beat**, cosi' nessuna didascalia viene
+mozzata. Le durate si leggono dalla timeline, e il taglio si fa con ffmpeg sul
+montaggio finito: **non serve rifare i render**.
+
+```powershell
+ffmpeg -i reel.mp4 -t 75.0 -c:v libx264 -crf 18 -an parte1.mp4
+ffmpeg -ss 75.0 -i reel.mp4 -c:v libx264 -crf 18 -an parte2.mp4
+```
+
+Il punto giusto non e' la meta': e' **una domanda gia' presente nel testo**.
+Nel reel Lipsia la parte 1 chiude su «E i libri che restano invenduti?» e la
+parte 2 apre su «Finiscono in una discarica». Il cliffhanger non va inventato,
+va trovato.
+
+La parte 2 pero' resta senza contesto per chi ci capita sopra: il rimando alla
+prima va nella didascalia, e se il pezzo gira vale la pena rifarla con tre
+secondi di richiamo iniziale.
+
+### La musica
+
+Si aggiunge da Instagram in pubblicazione, perche' il montaggio esce muto.
+
+La regola di partenza e' **strumentale**: 140 secondi di testo da leggere piu'
+un testo cantato sono due flussi di parole in competizione. Ma la regola ha
+un'eccezione utile: **una lingua che il pubblico non processa come lingua** non
+compete. Per un pubblico italiano il tedesco funziona — e se il brano appartiene
+al mondo del pezzo, smette di essere accompagnamento e diventa fonte.
+
+Tempo intorno agli 80-100 BPM, registro documentario e non epico, traccia
+uniforme senza stacchi: il pezzo ha gia' la sua struttura, e un crescendo
+cadrebbe nel punto sbagliato. Volume basso.
+
+**La musica di Instagram vale solo su Instagram.** Il file in `dist/` resta
+muto, quindi per la newsletter, LinkedIn o il sito servirebbe una traccia a
+licenza libera aggiunta al montaggio. Oggi la pipeline non lo fa: `audio=False`.
+
+## 10. Cosa manca
 
 **Il motore è dentro un episodio.** `captions.html`, `render_captions.py`,
 `build_standup_html.py` e `check_timeline.py` non hanno niente di specifico

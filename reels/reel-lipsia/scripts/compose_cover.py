@@ -102,11 +102,18 @@ def draw_line(d, testo, verde, font, y):
         x += d.textlength(t, font=font)
 
 
-def make(name, src, righe, verde):
+def make(name, src, righe, verde, kicker=None):
+    """kicker: riga piccola sopra il titolo, es. "PARTE 2". Serve a far
+    leggere due copertine come una serie nella griglia del profilo."""
     base = cover_crop(frame_from(*src))
     font, size = fit_font(righe)
     lh = int(size * 1.02)
-    blocco = lh * len(righe)
+
+    k_font = ImageFont.truetype(FONT_PATH, 52) if kicker else None
+    k_gap = 46 if kicker else 0
+    k_h = 52 if kicker else 0
+
+    blocco = lh * len(righe) + k_h + k_gap
     top = (H - blocco) // 2            # centrato: sopravvive al ritaglio della griglia
 
     alpha = veil_alpha(base, top - 40, top + blocco + 40)
@@ -115,6 +122,16 @@ def make(name, src, righe, verde):
     d = ImageDraw.Draw(card)
 
     y = top
+    if kicker:
+        # spaziato, in verde: si legge come un'etichetta, non come titolo
+        tracking = 14
+        larghezza = sum(d.textlength(c, font=k_font) + tracking for c in kicker) - tracking
+        x = (W - larghezza) / 2
+        for c in kicker:
+            d.text((x, y), c, font=k_font, fill=(*ACID, 255))
+            x += d.textlength(c, font=k_font) + tracking
+        y += k_h + k_gap
+
     for r in righe:
         draw_line(d, r, verde, font, y)
         y += lh
