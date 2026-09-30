@@ -1,5 +1,9 @@
 # Reel Lipsia — «La discarica dei libri»
 
+> **Riprendi il lavoro:** per le versioni **YouTube 16:9** — v8 «Dalla discarica a Saturno» (attuale)
+> e v7 — parti da [`HANDOFF.md`](HANDOFF.md).
+> Questo README descrive la versione verticale 9:16 in due parti (Instagram).
+
 Aprile 1991: alla fiera del libro di Lipsia si vede il collasso dell'editoria
 della Germania Est. Poche settimane dopo, tonnellate di libri appena stampati
 finiscono in una discarica a Plottendorf. Un pastore di paese, Martin Weskott,

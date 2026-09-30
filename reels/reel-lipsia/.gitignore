@@ -21,3 +21,7 @@ assets/scan/
 *.m4a
 *.pdf
 *.docx
+
+# log e marcatori dei render
+*.log
+*_done.txt

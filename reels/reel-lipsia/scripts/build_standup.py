@@ -27,7 +27,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from moviepy import ColorClip, CompositeVideoClip, ImageClip, concatenate_videoclips
 
-from build_fullscreen import build_clip_shot, image_kenburns_clip
+from build_fullscreen import build_clip_shot, focus_zoom_clip, image_kenburns_clip
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -111,6 +111,10 @@ def build_visual_shot(shot, duration, width, height, fps):
         return build_clip_shot(shot["source"], shot.get("seek", 0), duration, width, height)
     if shot["kind"] == "image":
         return image_kenburns_clip(shot["source"], duration, width, height, shot.get("zoom", 1.1), fps)
+    if shot["kind"] == "focus":
+        # indagine: fermo immagine dal filmato originale + mirino + zoom sul dettaglio
+        return focus_zoom_clip(shot.get("raw", "plottendorf"), shot["at"], shot["focus"],
+                               duration, width, height, fps)
     if shot["kind"] == "solid":
         return ColorClip(size=(width, height), color=INK).with_duration(duration)
     raise ValueError(f"kind sconosciuto: {shot['kind']}")

@@ -9,9 +9,17 @@ trattarla come una normale immagine con zoom 1.0 senza tagliare niente.
 La posizione verticale tiene conto della fascia delle didascalie, che occupa
 all'incirca da 1400 a 1660: il blocco resta sopra.
 
+Con --16x9 compone invece card 1920x1080 per la pipeline YouTube (v7+):
+solo il fronte della banconota, grande, sopra la fascia delle didascalie.
+Escono in card16/ e sono registrate come marco16_* in build_fullscreen.py.
+
 Uso:
     .venv/Scripts/python.exe scripts/compose_banknotes.py
+    .venv/Scripts/python.exe scripts/compose_banknotes.py --16x9
+    .venv/Scripts/python.exe scripts/compose_banknotes.py --16x9 --retro   # retro -> card16-retro/
 """
+
+import sys
 
 from pathlib import Path
 
@@ -58,8 +66,62 @@ def make_card(src: Path, dest: Path):
     return note.size, (x, y)
 
 
+def trim_flat(img: Image.Image, tol: float = 12.0) -> Image.Image:
+    """Toglie bordi uniformi (bianchi o neri) guardando la varianza di righe e colonne."""
+    g = np.asarray(img.convert("L"), dtype=float)
+    rows = np.where(g.std(axis=1) > tol)[0]
+    cols = np.where(g.std(axis=0) > tol)[0]
+    if not len(rows) or not len(cols):
+        return img
+    return img.crop((cols[0], rows[0], cols[-1] + 1, rows[-1] + 1))
+
+
+def front_only(note: Image.Image) -> Image.Image:
+    """Separa il fronte dal retro: la riga piu' uniforme nella fascia centrale."""
+    g = np.asarray(note.convert("L"), dtype=float)
+    std = g.std(axis=1)
+    h = len(std)
+    mid = np.arange(int(h * 0.35), int(h * 0.65))
+    gap = mid[np.argmin(std[mid])]
+    return trim_flat(note.crop((0, 0, note.width, gap)))
+
+
+def back_only(note: Image.Image) -> Image.Image:
+    """Il retro (scene di vita, edifici): la meta' sotto la fascia centrale."""
+    g = np.asarray(note.convert("L"), dtype=float)
+    std = g.std(axis=1)
+    h = len(std)
+    mid = np.arange(int(h * 0.35), int(h * 0.65))
+    gap = mid[np.argmin(std[mid])]
+    return trim_flat(note.crop((0, gap, note.width, h)))
+
+
+W16, H16 = 1920, 1080
+NOTE16_WIDTH = 1380     # il fronte occupa buona parte del frame
+CENTER16_Y = 430        # sopra la fascia didascalie (in basso, ~760-1020)
+
+
+def make_card16(src: Path, dest: Path, side=front_only):
+    note = side(trim_flat(Image.open(src).convert("RGB")))
+    scale = NOTE16_WIDTH / note.width
+    note = note.resize((NOTE16_WIDTH, int(note.height * scale)), Image.LANCZOS)
+    card = Image.new("RGB", (W16, H16), INK)
+    x = (W16 - note.width) // 2
+    y = max(50, CENTER16_Y - note.height // 2)
+    card.paste(note, (x, y))
+    card.save(dest)
+    return note.size, (x, y)
+
+
 def main():
-    OUT.mkdir(parents=True, exist_ok=True)
+    wide = "--16x9" in sys.argv
+    back = "--retro" in sys.argv          # con --16x9: il retro invece del fronte
+    out = SRC / ("card16-retro" if back else "card16") if wide else OUT
+    if wide:
+        make = (lambda s, d: make_card16(s, d, back_only)) if back else make_card16
+    else:
+        make = make_card
+    out.mkdir(parents=True, exist_ok=True)
     for src in sorted(SRC.glob("*.jpg")):
         if src.name.startswith("_"):
             continue
@@ -69,8 +131,8 @@ def main():
                 .replace(" mark banknotes", "")
                 .replace(" marks", "")
                 .replace(" ", "-"))
-        dest = OUT / f"marco-{slug}.png"
-        size, pos = make_card(src, dest)
+        dest = out / f"marco-{slug}.png"
+        size, pos = make(src, dest)
         print(f"{dest.name:28} banconota {size[0]}x{size[1]} a y={pos[1]}")
 
 

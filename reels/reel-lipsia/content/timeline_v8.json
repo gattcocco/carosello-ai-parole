@@ -1,0 +1,819 @@
+{
+ "_readme": "Timeline v8 'Dalla discarica a Saturno' — 16:9 YouTube. Hook su Cassini (NASA: fine missione 15/9/2017; SZ 2017: un ricercatore del Max-Planck di Katlenburg-Lindau trovo' 'vor 20 Jahren in einem der Stapel' un libro DDR con la mistura di materiali per uno spettrofotometro di Cassini). Capitolo PLOTTENDORF come indagine sul filmato KANAL X del 22/7/1991: shot 'focus' (fermo immagine + mirino + zoom) solo su indizi LEGGIBILI e verificati a mano: Elke Erb 'Kastanienallee' (Aufbau 1987; Buechner 2020), Joachim Nowotny 'Adebar und Kunigunde' (Kinderbuchverlag 1990, una cicogna che deve farsi un nuovo nido). Gli autori Reimann/Hein/Heym/Seifert NON si leggono nel filmato: attribuiti alla stampa (SZ). Banconote DDR 16:9 (marco16_*) reinserite. Testi v7 invariati altrove. Didascalie: '|' nel testo = a capo forzato; righe bilanciate (text-wrap:balance). Banconote: mostrato il RETRO (marco16r_*, scene di vita).",
+ "width": 1920,
+ "height": 1080,
+ "fps": 25,
+ "out_name_html": "discarica-dei-libri-v8-yt.mp4",
+ "beats": [
+  {
+   "text": "15 settembre 2017. La sonda Cassini si tuffa in Saturno.",
+   "highlight": "si tuffa in Saturno",
+   "duration": 3.8,
+   "cite": "NASA · JPL",
+   "shots": [
+    {
+     "source": "nasa_dive",
+     "kind": "image",
+     "zoom": 1.06
+    }
+   ]
+  },
+  {
+   "text": "Vent'anni prima, per costruire uno dei suoi strumenti, era servito un libro della Germania Est.",
+   "highlight": "un libro della Germania Est",
+   "duration": 4.8,
+   "cite": "Süddeutsche Zeitung · 2017",
+   "shots": [
+    {
+     "source": "nasa_cassini",
+     "kind": "image",
+     "zoom": 1.05
+    },
+    {
+     "source": "kat_libri",
+     "kind": "image",
+     "zoom": 1.08
+    }
+   ]
+  },
+  {
+   "text": "Un libro che il mercato aveva buttato via.",
+   "highlight": "buttato via",
+   "duration": 2.8,
+   "shots": [
+    {
+     "source": "plo_0740",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Come ci è arrivato, fino a Saturno?",
+   "highlight": "fino a Saturno",
+   "duration": 2.6,
+   "shots": [
+    {
+     "source": "plo_0215",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Andiamo con ordine.",
+   "highlight": null,
+   "duration": 1.8,
+   "shots": [
+    {
+     "source": "marco16r_100",
+     "kind": "image",
+     "zoom": 1.03
+    }
+   ]
+  },
+  {
+   "chapter": {
+    "title": "LA TERRA DEI LETTORI",
+    "sub": "GERMANIA EST · 1949–1990"
+   },
+   "text": null,
+   "highlight": null,
+   "duration": 2.6,
+   "shots": [
+    {
+     "source": "black",
+     "kind": "solid"
+    }
+   ]
+  },
+  {
+   "text": "Fino al 1990, la Germania Est si vantava di essere «la terra dei lettori».",
+   "highlight": "la terra dei lettori",
+   "duration": 3.9,
+   "cite": "il manifesto · 1991",
+   "label": "Library Organization · USA · 1951",
+   "shots": [
+    {
+     "source": "lib_0030",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "La letteratura non era libera: era pianificata. Come l'acciaio.",
+   "highlight": "Come l'acciaio",
+   "duration": 3.4,
+   "shots": [
+    {
+     "source": "L4",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Per il 1989 il piano segreto prevedeva 625 titoli, oltre 11 milioni di copie.",
+   "highlight": "625 titoli",
+   "duration": 4.0,
+   "cite": "Darnton, I censori all'opera",
+   "shots": [
+    {
+     "source": "lib_0420",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "66 titoli in più dell'anno prima: crescita programmata, nell'ultimo anno del regime.",
+   "highlight": "66 titoli in più",
+   "duration": 4.3,
+   "cite": "Darnton",
+   "shots": [
+    {
+     "source": "lib_0420",
+     "kind": "clip",
+     "seek": 4
+    }
+   ]
+  },
+  {
+   "text": "Ufficialmente la censura non esisteva: la vietava la Costituzione.",
+   "highlight": "non esisteva",
+   "duration": 3.5,
+   "cite": "Darnton",
+   "shots": [
+    {
+     "source": "lib_0945",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Per pubblicare era indispensabile una firma: il permesso di stampa. Senza, il libro non usciva.",
+   "highlight": "il permesso di stampa",
+   "duration": 4.6,
+   "cite": "Darnton",
+   "shots": [
+    {
+     "source": "lib_0945",
+     "kind": "clip",
+     "seek": 3
+    }
+   ]
+  },
+  {
+   "text": "E le tipografie erano quasi tutte del Partito.",
+   "highlight": "del Partito",
+   "duration": 2.7,
+   "cite": "Darnton",
+   "shots": [
+    {
+     "source": "L2",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "La prima censura, del resto, era già nella testa di chi scriveva.",
+   "highlight": "nella testa di chi scriveva",
+   "duration": 3.5,
+   "cite": "Darnton",
+   "shots": [
+    {
+     "source": "lib_0030",
+     "kind": "clip",
+     "seek": 4
+    }
+   ]
+  },
+  {
+   "text": "E ogni nuova pubblicazione poteva costare il posto a un funzionario.",
+   "highlight": "costare il posto",
+   "duration": 3.6,
+   "cite": "Darnton",
+   "shots": [
+    {
+     "source": "lib_0620",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Lo Stato sovvenzionava tutto: la carta, i prezzi, il compenso degli autori.",
+   "highlight": "sovvenzionava tutto",
+   "duration": 3.9,
+   "cite": "il manifesto",
+   "shots": [
+    {
+     "source": "L4",
+     "kind": "clip"
+    },
+    {
+     "source": "marco16r_10",
+     "kind": "image",
+     "zoom": 1.03
+    }
+   ]
+  },
+  {
+   "text": "O forse si leggeva tanto | perché non c'era molto altro da comprare.",
+   "highlight": "non c'era molto altro",
+   "duration": 3.5,
+   "shots": [
+    {
+     "source": "marco16r_20",
+     "kind": "image",
+     "zoom": 1.03
+    },
+    {
+     "source": "marco16r_200",
+     "kind": "image",
+     "zoom": 1.03
+    }
+   ]
+  },
+  {
+   "chapter": {
+    "title": "ARRIVA IL MERCATO",
+    "sub": "1990 · LA RIUNIFICAZIONE"
+   },
+   "text": null,
+   "highlight": null,
+   "duration": 2.5,
+   "shots": [
+    {
+     "source": "black",
+     "kind": "solid"
+    }
+   ]
+  },
+  {
+   "chapter": {
+    "title": "LIPSIA",
+    "sub": "APRILE 1991"
+   },
+   "text": null,
+   "highlight": null,
+   "duration": 2.4,
+   "shots": [
+    {
+     "source": "black",
+     "kind": "solid"
+    }
+   ]
+  },
+  {
+   "text": "Fiera del libro di Lipsia, dal 1470. Tutti temono sia arrivata la sua ultima ora.",
+   "highlight": "dal 1470",
+   "duration": 4.2,
+   "cite": "il manifesto · 1991",
+   "shots": [
+    {
+     "source": "lib_0620",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "340 case editrici dall'ovest. Solo 89 dall'est.",
+   "highlight": "Solo 89 dall'est",
+   "duration": 2.9,
+   "cite": "il manifesto",
+   "shots": [
+    {
+     "source": "lib_0620",
+     "kind": "clip",
+     "seek": 4.5
+    }
+   ]
+  },
+  {
+   "text": "I tascabili occidentali — Knaur, Lübbe, Bertelsmann — invadono gli scaffali.",
+   "highlight": "invadono gli scaffali",
+   "duration": 3.9,
+   "cite": "il manifesto",
+   "shots": [
+    {
+     "source": "lib_0140",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Cosa comprano i lettori? Manuali per fare il primo milione di marchi. E Ken Follett.",
+   "highlight": "Ken Follett",
+   "duration": 4.3,
+   "shots": [
+    {
+     "source": "L3",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Le case editrici dell'est licenziano: Aufbau passa da 180 a 55 dipendenti.",
+   "highlight": "da 180 a 55",
+   "duration": 3.9,
+   "cite": "il manifesto",
+   "shots": [
+    {
+     "source": "lib_0945",
+     "kind": "clip",
+     "seek": 5
+    },
+    {
+     "source": "lib_0140",
+     "kind": "clip",
+     "seek": 4
+    }
+   ]
+  },
+  {
+   "text": "E i libri che restano invenduti?",
+   "highlight": null,
+   "duration": 2.2,
+   "shots": [
+    {
+     "source": "P4",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "chapter": {
+    "title": "PLOTTENDORF",
+    "sub": "A SUD DI LIPSIA · 22 LUGLIO 1991"
+   },
+   "text": null,
+   "highlight": null,
+   "duration": 2.5,
+   "shots": [
+    {
+     "source": "black",
+     "kind": "solid"
+    }
+   ]
+  },
+  {
+   "text": "Finiscono in una discarica, pochi chilometri a sud di Lipsia.",
+   "highlight": "una discarica",
+   "duration": 3.4,
+   "label": "Bücherdeponie Plottendorf · 1991",
+   "shots": [
+    {
+     "source": "plo_0740",
+     "kind": "clip",
+     "seek": 2
+    }
+   ]
+  },
+  {
+   "text": "Il 22 luglio 1991 qualcuno entra con una videocamera. E filma tutto.",
+   "highlight": "filma tutto",
+   "duration": 3.6,
+   "label": "KANAL X · Plottendorf · 22.07.1991",
+   "shots": [
+    {
+     "source": "P1",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Abbiamo riguardato quel filmato fotogramma per fotogramma, in cerca di indizi.",
+   "highlight": "fotogramma per fotogramma",
+   "duration": 4.4,
+   "shots": [
+    {
+     "source": "P3",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Non copie danneggiate: tirature intere, appena stampate.",
+   "highlight": "tirature intere",
+   "duration": 3.4,
+   "label": "fotogramma 05:26",
+   "shots": [
+    {
+     "source": "plottendorf",
+     "kind": "focus",
+     "raw": "plottendorf",
+     "at": 326.9,
+     "focus": [
+      0.52,
+      0.22,
+      0.62
+     ]
+    }
+   ]
+  },
+  {
+   "text": "Indizio n. 1: «Kastanienallee», poesie di Elke Erb.",
+   "highlight": "Elke Erb",
+   "duration": 3.8,
+   "label": "fotogramma 05:45",
+   "shots": [
+    {
+     "source": "plottendorf",
+     "kind": "focus",
+     "raw": "plottendorf",
+     "at": 345.5,
+     "focus": [
+      0.47,
+      0.36,
+      0.8
+     ]
+    }
+   ]
+  },
+  {
+   "text": "Nel 2020 la sua autrice vincerà il premio Büchner, il più importante della letteratura tedesca.",
+   "highlight": "premio Büchner",
+   "duration": 4.8,
+   "cite": "Deutsche Akademie · 2020",
+   "shots": [
+    {
+     "source": "plo_0545",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Indizio n. 2: un libro per bambini di Joachim Nowotny, uscito nel 1990.",
+   "highlight": "Joachim Nowotny",
+   "duration": 4.0,
+   "label": "fotogramma 05:04",
+   "shots": [
+    {
+     "source": "plottendorf",
+     "kind": "focus",
+     "raw": "plottendorf",
+     "at": 303.0,
+     "focus": [
+      0.47,
+      0.53,
+      0.9
+     ]
+    }
+   ]
+  },
+  {
+   "text": "Racconta di una cicogna che deve costruirsi un nuovo nido.",
+   "highlight": "un nuovo nido",
+   "duration": 3.4,
+   "shots": [
+    {
+     "source": "P4",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Altri nomi li riporta la stampa: Reimann, Hein, Heym. E un Nobel ceco, Seifert.",
+   "highlight": "un Nobel ceco",
+   "duration": 4.4,
+   "cite": "Süddeutsche Zeitung · 2017",
+   "shots": [
+    {
+     "source": "plo_0415",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "E, sì, il manuale per riparare la Trabant.",
+   "highlight": "manuale per riparare la Trabant",
+   "duration": 2.7,
+   "shots": [
+    {
+     "source": "trabant",
+     "kind": "image",
+     "zoom": 1.08
+    }
+   ]
+  },
+  {
+   "text": "Erano sopravvissuti alla censura. Ma non al mercato.",
+   "highlight": "Ma non al mercato",
+   "duration": 3.2,
+   "shots": [
+    {
+     "source": "P1",
+     "kind": "clip",
+     "seek": 1
+    },
+    {
+     "source": "P3",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "chapter": {
+    "title": "IL PASTORE",
+    "sub": "MAGGIO 1991"
+   },
+   "text": null,
+   "highlight": null,
+   "duration": 2.4,
+   "shots": [
+    {
+     "source": "black",
+     "kind": "solid"
+    }
+   ]
+  },
+  {
+   "text": "Una foto della discarica finisce sulla Süddeutsche Zeitung.",
+   "highlight": null,
+   "duration": 3.3,
+   "cite": "SZ · 2017",
+   "shots": [
+    {
+     "source": "P3",
+     "kind": "clip",
+     "seek": 1.5
+    }
+   ]
+  },
+  {
+   "text": "La vede un pastore di paese: Martin Weskott, a Katlenburg dal 1979.",
+   "highlight": "Martin Weskott",
+   "duration": 3.6,
+   "cite": "SZ · 2017",
+   "shots": [
+    {
+     "source": "pastore",
+     "kind": "image",
+     "zoom": 1.05
+    }
+   ]
+  },
+  {
+   "text": "Prende il furgone. Va, lo riempie, torna.",
+   "highlight": "il furgone",
+   "duration": 2.8,
+   "shots": [
+    {
+     "source": "plo_0646",
+     "kind": "clip"
+    },
+    {
+     "source": "plo_0628",
+     "kind": "clip"
+    }
+   ]
+  },
+  {
+   "text": "Poi non basta più: arrivano i camion. 150 viaggi.",
+   "highlight": "150 viaggi",
+   "duration": 2.9,
+   "cite": "SZ · 2017",
+   "shots": [
+    {
+     "source": "plo_0445",
+     "kind": "clip",
+     "seek": 1
+    }
+   ]
+  },
+  {
+   "text": "I libri riempiono prima un refettorio agostiniano del Dodicesimo secolo.",
+   "highlight": "del Dodicesimo secolo",
+   "duration": 3.9,
+   "cite": "SZ · 2017",
+   "shots": [
+    {
+     "source": "kat_merian",
+     "kind": "image",
+     "zoom": 1.05
+    },
+    {
+     "source": "kat_cripta",
+     "kind": "image",
+     "zoom": 1.06
+    }
+   ]
+  },
+  {
+   "text": "Poi un intero granaio gotico delle decime.",
+   "highlight": "granaio gotico delle decime",
+   "duration": 2.7,
+   "shots": [
+    {
+     "source": "kat_burgberg",
+     "kind": "image",
+     "zoom": 1.04
+    },
+    {
+     "source": "kat_granaio",
+     "kind": "image",
+     "zoom": 1.08
+    }
+   ]
+  },
+  {
+   "chapter": {
+    "title": "OGGI",
+    "sub": "KATLENBURG"
+   },
+   "text": null,
+   "highlight": null,
+   "duration": 2.2,
+   "shots": [
+    {
+     "source": "black",
+     "kind": "solid"
+    }
+   ]
+  },
+  {
+   "text": "Oggi sono 1 milione. Ogni domenica, con una donazione, si possono ancora portare via.",
+   "highlight": "1 milione",
+   "duration": 4.4,
+   "cite": "SZ · 2017",
+   "shots": [
+    {
+     "source": "kat_libri",
+     "kind": "image",
+     "zoom": 1.1
+    },
+    {
+     "source": "pastore",
+     "kind": "image",
+     "zoom": 1.05
+    }
+   ]
+  },
+  {
+   "text": "Oltre 130.000 € raccolti nel tempo per un'associazione benefica.",
+   "highlight": "130.000 €",
+   "duration": 3.4,
+   "cite": "SZ · 2017",
+   "shots": [
+    {
+     "source": "kat_chiesa",
+     "kind": "image",
+     "zoom": 1.06
+    }
+   ]
+  },
+  {
+   "text": "Nello stesso comune aveva sede un istituto Max Planck per la ricerca spaziale.",
+   "highlight": "un istituto Max Planck",
+   "duration": 4.2,
+   "cite": "MPS · Katlenburg-Lindau",
+   "shots": [
+    {
+     "source": "kat_burgberg",
+     "kind": "image",
+     "zoom": 1.05
+    }
+   ]
+  },
+  {
+   "text": "Un suo ricercatore, tra quelle pile, trovò il libro giusto.",
+   "highlight": "il libro giusto",
+   "duration": 3.4,
+   "cite": "Süddeutsche Zeitung · 2017",
+   "shots": [
+    {
+     "source": "kat_libri",
+     "kind": "image",
+     "zoom": 1.1
+    }
+   ]
+  },
+  {
+   "text": "Descriveva la mistura di materiali che gli serviva per uno strumento della sonda Cassini.",
+   "highlight": "sonda Cassini",
+   "duration": 4.6,
+   "shots": [
+    {
+     "source": "nasa_cassini",
+     "kind": "image",
+     "zoom": 1.06
+    }
+   ]
+  },
+  {
+   "text": "Il mercato lo aveva buttato via. | Lui lo usò per arrivare a Saturno.",
+   "highlight": "arrivare a Saturno",
+   "duration": 3.8,
+   "shots": [
+    {
+     "source": "nasa_saturn",
+     "kind": "image",
+     "zoom": 1.06
+    }
+   ]
+  },
+  {
+   "text": "Nel 1931 il bibliotecario Ranganathan scrisse: «la biblioteca è un organismo che cresce».",
+   "highlight": "un organismo che cresce",
+   "duration": 4.6,
+   "cite": "S. R. Ranganathan · 1931",
+   "shots": [
+    {
+     "source": "lib_0945",
+     "kind": "clip",
+     "seek": 1.5
+    },
+    {
+     "source": "lib_0030",
+     "kind": "clip",
+     "seek": 1.5
+    }
+   ]
+  },
+  {
+   "text": "Nel 1991, a sud di Lipsia, quell'organismo è finito in discarica.",
+   "highlight": "in discarica",
+   "duration": 3.6,
+   "shots": [
+    {
+     "source": "plo_0215",
+     "kind": "clip",
+     "seek": 1.5
+    }
+   ]
+  },
+  {
+   "text": "Non per una dittatura: la dittatura quei libri li aveva fatti stampare.",
+   "highlight": "li aveva fatti stampare",
+   "duration": 3.8,
+   "shots": [
+    {
+     "source": "L2",
+     "kind": "clip",
+     "seek": 0.5
+    }
+   ]
+  },
+  {
+   "text": "Ma per l'arrivo del mercato. Libero, e spietato.",
+   "highlight": "libero, e spietato",
+   "duration": 2.9,
+   "shots": [
+    {
+     "source": "lib_0140",
+     "kind": "clip",
+     "seek": 1.5
+    }
+   ]
+  },
+  {
+   "text": "Un censore della DDR lo sosteneva: anche il mercato è una censura. Solo, sceglie in silenzio.",
+   "highlight": "anche il mercato è una censura",
+   "duration": 4.7,
+   "cite": "Darnton",
+   "shots": [
+    {
+     "source": "lib_0620",
+     "kind": "clip",
+     "seek": 2
+    }
+   ]
+  },
+  {
+   "text": "Quei libri, però, non sono morti: una persona sola, con un furgone, gli ha fatto cambiare nido.",
+   "highlight": "una persona sola",
+   "duration": 5.0,
+   "shots": [
+    {
+     "source": "kat_libri",
+     "kind": "image",
+     "zoom": 1.06
+    },
+    {
+     "source": "plo_0646",
+     "kind": "clip",
+     "seek": 1
+    }
+   ]
+  },
+  {
+   "text": "Altre storie tra libri e potere le trovi su Critical Inventory.",
+   "highlight": "Critical Inventory",
+   "duration": 3.6,
+   "shots": [
+    {
+     "source": "black",
+     "kind": "solid"
+    }
+   ]
+  },
+  {
+   "text": null,
+   "highlight": null,
+   "duration": 3.0,
+   "shots": [
+    {
+     "source": "cta16",
+     "kind": "image",
+     "zoom": 1.0
+    }
+   ]
+  }
+ ]
+}

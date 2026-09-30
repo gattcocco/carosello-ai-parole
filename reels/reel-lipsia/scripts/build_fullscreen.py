@@ -54,6 +54,8 @@ IMAGES_DIR = ROOT / "assets" / "images"
 KATLENBURG_DIR = IMAGES_DIR / "katlenburg"
 BRAND_DIR = ROOT.parent.parent / "brand" / "loghi"
 MARCHI_DIR = ROOT / "assets" / "images" / "ddr-marchi" / "card"
+MARCHI16_DIR = ROOT / "assets" / "images" / "ddr-marchi" / "card16"
+MARCHI16R_DIR = ROOT / "assets" / "images" / "ddr-marchi" / "card16-retro"
 
 IMAGE_SOURCES = {
     # Non versionati (diritti di terzi, vedi assets/SOURCES.md sez. D):
@@ -71,6 +73,8 @@ IMAGE_SOURCES = {
     # Va usata con zoom 1.0 e senza didascalia, altrimenti la fascia del testo
     # copre "Iscriviti" e "Link in bio".
     "cta_newsletter": BRAND_DIR / "Poster per newsletter tra idee e strumenti.png",
+    # Card CTA 16:9 dedicata (il poster e' 9:16 e il cover-crop la distruggerebbe).
+    "cta16": IMAGES_DIR / "cta16-1080.png",
 
     # Banconote della DDR, gia' composte in 1080x1920 da compose_banknotes.py.
     # Le scansioni originali sono quasi quadrate e il cover-crop ne taglierebbe
@@ -83,6 +87,30 @@ IMAGE_SOURCES = {
     "marco_200": MARCHI_DIR / "marco-200.png",   # scena sociale
     "marco_500": MARCHI_DIR / "marco-500.png",
     "marco_100_1964": MARCHI_DIR / "marco-1964-100.png",  # Marx / Porta di Brandeburgo
+
+    # Stesse banconote in card 1920x1080 (solo fronte), per la pipeline 16:9.
+    # Generate da `compose_banknotes.py --16x9`; vanno usate con zoom 1.0-1.04.
+    "marco16_10":  MARCHI16_DIR / "marco-10.png",    # Clara Zetkin
+    "marco16_20":  MARCHI16_DIR / "marco-20.png",    # Goethe
+    "marco16_50":  MARCHI16_DIR / "marco-50.png",    # Engels
+    "marco16_100": MARCHI16_DIR / "marco-100.png",   # Marx
+    "marco16_200": MARCHI16_DIR / "marco-200.png",   # famiglia
+    "marco16_500": MARCHI16_DIR / "marco-500.png",   # stemma
+    "marco16_100_1964": MARCHI16_DIR / "marco-1964-100.png",
+
+    # Retro delle stesse banconote (scene di vita ed edifici): `--16x9 --retro`.
+    "marco16r_10":  MARCHI16R_DIR / "marco-10.png",    # operaia al quadro comandi
+    "marco16r_20":  MARCHI16R_DIR / "marco-20.png",    # bambini che escono da scuola
+    "marco16r_50":  MARCHI16R_DIR / "marco-50.png",    # raffineria
+    "marco16r_100": MARCHI16R_DIR / "marco-100.png",   # Berlino, torre della TV
+    "marco16r_200": MARCHI16R_DIR / "marco-200.png",   # famiglia con bambini
+    "marco16r_500": MARCHI16R_DIR / "marco-500.png",   # palazzo del Consiglio di Stato
+    "marco16r_100_1964": MARCHI16R_DIR / "marco-1964-100.png",  # Porta di Brandeburgo
+
+    # NASA/JPL-Caltech, pubblico dominio (v8 "Dalla discarica a Saturno").
+    "nasa_dive":    IMAGES_DIR / "nasa" / "PIA21439.jpg",  # illustrazione: tuffo finale
+    "nasa_cassini": IMAGES_DIR / "nasa" / "PIA22767.jpg",  # illustrazione: Cassini sopra Saturno
+    "nasa_saturn":  IMAGES_DIR / "nasa" / "PIA17172.jpg",  # foto Cassini 2013, Saturno in controluce
 }
 
 
@@ -113,6 +141,69 @@ def image_kenburns_clip(source: str, duration: float, width: int, height: int, z
         crop = big[cy0:cy0 + crop_h, cx0:cx0 + crop_w]
         frame = np.array(Image.fromarray(crop).resize((width, height)))
         return frame
+
+    return VideoClip(frame_function=frame_function, duration=duration).with_fps(fps)
+
+
+RAW_SOURCES = {
+    "plottendorf": ROOT / "assets" / "raw" / "plottendorf.mp4",
+    "library": ROOT / "assets" / "raw" / "library-organization.mp4",
+}
+
+
+def focus_zoom_clip(raw: str, at: float, focus, duration: float, width: int, height: int, fps: int):
+    """Inquadratura 'indagine': fermo immagine dal filmato originale, mirino
+    verde attorno all'indizio, poi zoom fino a riempire il frame col dettaglio.
+
+    focus = [cx, cy, w]: centro e larghezza del riquadro finale, in frazioni
+    del fotogramma sorgente (0-1). Il riquadro ha sempre l'aspetto dell'uscita.
+    Tempi: 0-30% campo intero + mirino che si stringe, 30-80% zoom con easing,
+    poi fermo sul dettaglio.
+    """
+    from PIL import ImageDraw
+    path = RAW_SOURCES[raw]
+    src = VideoFileClip(str(path))
+    frame = Image.fromarray(src.get_frame(at)).convert("RGB")
+    src.close()
+    sw, sh = frame.size
+    aspect = width / height
+
+    # riquadro iniziale: il cover-crop 16:9 del fotogramma intero
+    w0 = min(sw, sh * aspect); h0 = w0 / aspect
+    start = ((sw - w0) / 2, (sh - h0) / 2, w0, h0)
+    cx, cy, fw = focus
+    w1 = fw * sw; h1 = w1 / aspect
+    x1 = min(max(cx * sw - w1 / 2, 0), sw - w1)
+    y1 = min(max(cy * sh - h1 / 2, 0), sh - h1)
+    end = (x1, y1, w1, h1)
+
+    def ease(u):
+        return u * u * (3 - 2 * u)
+
+    def frame_function(t):
+        f = min(max(t / duration, 0), 1)
+        z = ease(min(max((f - 0.30) / 0.50, 0), 1))
+        x, y, w, h = (a + (b - a) * z for a, b in zip(start, end))
+        img = frame.resize((width, height), Image.LANCZOS, box=(x, y, x + w, y + h))
+        # mirino: angolari verdi sul riquadro di arrivo, visibili finche' non si entra
+        alpha = min(f / 0.12, 1) * (1 - z)
+        if alpha > 0.02:
+            sx, sy = width / w, height / h
+            rx0, ry0 = (x1 - x) * sx, (y1 - y) * sy
+            rx1, ry1 = rx0 + w1 * sx, ry0 + h1 * sy
+            # nella prima fase il mirino si stringe dal 130% al 100%
+            k = 1 + 0.3 * (1 - ease(min(f / 0.30, 1)))
+            mx, my = (rx0 + rx1) / 2, (ry0 + ry1) / 2
+            rx0, rx1 = mx + (rx0 - mx) * k, mx + (rx1 - mx) * k
+            ry0, ry1 = my + (ry0 - my) * k, my + (ry1 - my) * k
+            over = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+            d = ImageDraw.Draw(over)
+            col = (166, 255, 0, int(255 * alpha)); L = min(rx1 - rx0, ry1 - ry0) * 0.22; lw = 5
+            for (px, py, dx, dy) in ((rx0, ry0, 1, 1), (rx1, ry0, -1, 1), (rx0, ry1, 1, -1), (rx1, ry1, -1, -1)):
+                d.line([(px, py), (px + dx * L, py)], fill=col, width=lw)
+                d.line([(px, py), (px, py + dy * L)], fill=col, width=lw)
+            img = Image.alpha_composite(img.convert("RGBA"), over).convert("RGB")
+        return np.array(img)
 
     return VideoClip(frame_function=frame_function, duration=duration).with_fps(fps)
 

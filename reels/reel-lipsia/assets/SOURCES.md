@@ -84,3 +84,28 @@ fonti.
 La brevità dell'estratto e la finalità critica o divulgativa non rendono automaticamente
 qualsiasi riuso libero: mantenere l'attribuzione sopra, il rapporto diretto tra immagini
 e commento, e verificare le condizioni delle fonti prima della pubblicazione pubblica.
+
+## E. v8 «Dalla discarica a Saturno» — indizi dal filmato e immagini NASA
+
+**Indizi leggibili nel filmato Plottendorf** (scansione fotogramma per fotogramma, verificati a mano;
+usati solo quelli leggibili senza ambiguità):
+
+| Timecode sorgente | Si legge | Contesto |
+|---|---|---|
+| 05:02–05:16 | «Joachim Nowotny — Adebar und Kunigunde» (sotto cellophane) | Der Kinderbuchverlag Berlin, 1990; una cicogna deve costruirsi un nuovo nido (scheda editoriale, onleihe/EDITION digital) |
+| 05:17–05:54 | «ELKE ERB — Kastanienallee» | Aufbau-Verlag 1987; Peter-Huchel-Preis 1988; Georg-Büchner-Preis 2020 (Deutsche Akademie, comunicato 7/7/2020) |
+| 05:26–05:38 | decine di copie di «Kastanienallee» su un bancale | prova delle tirature intere |
+| 06:48 | «VEB …» dipinto sul muro della portineria | parziale, non usato |
+
+Non leggibili nel filmato: Reimann, Hein, Heym, Seifert e gli altri autori citati dalla SZ (nel testo
+attribuiti alla stampa), nessun libro scientifico identificabile.
+
+**Cassini / Max Planck:** SZ 2017 — il ricercatore del Max-Planck-Institut für Sonnensystemforschung
+trovò «vor 20 Jahren in einem der Stapel» (tra i libri di Weskott) il libro con la mistura di materiali
+per uno spettrofotometro di Cassini. NASA: lancio 15/10/1997, fine missione 15/9/2017. L'istituto
+(allora MPI für Aeronomie) era a Katlenburg-Lindau fino al 2014 e fornì componenti di UVIS-HDAC e
+MIMI-LEMMS (mps.mpg.de). Quale strumento e quale libro: **non noti**, non nominati nel testo.
+
+**Immagini NASA** (`images/nasa/`, pubblico dominio, credito NASA/JPL-Caltech):
+`nasa_dive` = PIA21439 (illustrazione), `nasa_cassini` = PIA22767 (illustrazione),
+`nasa_saturn` = PIA17172 «The Day the Earth Smiled» (foto Cassini 2013, NASA/JPL-Caltech/SSI).
