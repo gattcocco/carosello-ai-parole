@@ -1,0 +1,27 @@
+dist/
+__pycache__/
+
+# Materiale pesante e di terzi: resta sulla chiavetta, non va in git.
+# Vale la regola di reels/README.md: press kit e footage di terzi non si
+# ridistribuiscono. La provenienza e' tracciata nei file .md, che invece
+# vanno versionati:
+#   assets/SOURCES.md
+#   assets/images/katlenburg/CREDITS.md
+assets/raw/
+assets/clips/
+assets/scan/
+
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.avif
+*.mp4
+*.wav
+*.m4a
+*.pdf
+*.docx
+
+# log e marcatori dei render
+*.log
+*_done.txt

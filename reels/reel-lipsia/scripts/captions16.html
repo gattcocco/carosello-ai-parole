@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Captions 16:9 — reel Lipsia</title>
+<style>
+  @font-face{
+    font-family:"ReelDisplay";
+    src: local("Bodoni MT Condensed Bold"),
+         local("BodoniMT-CondensedBold"),
+         local("Bodoni MT Condensed"),
+         local("Bodoni MT");
+    font-weight:700; font-style:normal;
+  }
+  :root{
+    --bone:#F2EFE9;
+    --acid:#A6FF00;
+    --ink:11,11,13;
+    --scrim-alpha:0.647;
+    --safe:1500px;
+    --bottom:60px;
+    --pad-y:40px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{ width:1920px;height:1080px; background:transparent; overflow:hidden; }
+  body{ font-family:"ReelDisplay","Bodoni MT",serif; font-weight:700; -webkit-font-smoothing:antialiased; }
+  #stage{position:relative;width:1920px;height:1080px;}
+
+  .beat{ position:absolute;left:0;right:0;bottom:var(--bottom); opacity:0;visibility:hidden; will-change:transform,opacity; }
+  .scrim{ position:absolute;inset:0; background:rgba(var(--ink),var(--scrim-alpha)); }
+  .lines{ position:relative; width:var(--safe);margin:0 auto; padding:var(--pad-y) 0; text-align:center; color:var(--bone); text-wrap:balance; }
+
+  .w{ display:inline-block;overflow:visible;vertical-align:bottom; }
+  .hlgroup{ white-space:nowrap; }
+  .ww{ display:inline-block;position:relative; will-change:transform,opacity,filter; }
+  .run{display:inline-block;position:relative;}
+  .acid{ position:absolute;left:0;top:0; color:var(--acid);white-space:pre; clip-path:inset(0 100% 0 0); }
+  /* sottolineatura acida che si disegna sotto l'evidenziazione */
+  .ul{ position:absolute;left:0;right:0;bottom:0.02em;height:0.07em;background:var(--acid);
+       transform:scaleX(0);transform-origin:left center;border-radius:2px; }
+
+  /* micro-citazione fonte (alto-destra) ed etichetta footage (alto-sinistra) */
+  .cite,.label{
+    position:absolute;top:42px; opacity:0;visibility:hidden;
+    font-family:ui-monospace,"DejaVu Sans Mono",monospace;font-weight:400;
+    font-size:25px;letter-spacing:2px;color:rgba(242,239,233,0.74);
+    text-shadow:0 2px 10px rgba(0,0,0,0.95);
+    display:flex;align-items:center;gap:10px;white-space:nowrap;
+  }
+  .cite{right:52px;flex-direction:row-reverse;}
+  .label{left:52px;}
+  .mk{ color:var(--acid);font-size:15px;display:inline-block;transform:scale(0);will-change:transform; }
+  .tx{ display:inline-block;overflow:hidden;position:relative; }
+  .tx>span{ display:inline-block; }
+
+  /* cartello-capitolo, centrato su nero (il nero arriva dallo shot 'solid' sotto) */
+  .chapter{ position:absolute;inset:0; opacity:0;visibility:hidden;
+    display:flex;flex-direction:column;align-items:center;justify-content:center; }
+  .chapter .sub{
+    font-family:ui-monospace,"DejaVu Sans Mono",monospace;font-weight:700;
+    font-size:33px;letter-spacing:10px;color:var(--acid);margin-bottom:28px;
+    display:inline-block;overflow:hidden;white-space:pre; }
+  .chapter .rule{width:140px;height:2px;background:rgba(242,239,233,0.4);margin-bottom:32px;
+    transform:scaleX(0);transform-origin:center; }
+  .chapter .title{
+    font-family:"ReelDisplay","Bodoni MT",serif;font-weight:700;
+    font-size:118px;letter-spacing:2px;color:var(--bone);line-height:1.0;text-align:center; }
+  .chapter .cl{ display:inline-block;will-change:transform,opacity,filter; }
+
+  #hud{ position:fixed;left:16px;top:16px;z-index:99;
+    font:600 20px/1.4 ui-monospace,monospace;color:#A6FF00;
+    background:rgba(11,11,13,.8);padding:10px 14px;border-radius:6px;
+    white-space:pre;display:none; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div id="hud"></div>
+<script>
+(() => {
+  "use strict";
+  // ---- tempi & motion ------------------------------------------------
+  const WORD_DUR=0.44, RISE_EM=0.72, BLUR_MAX=9;      // entrata parola: rise + fade + blur
+  const IN_FADE=0.26, OUT_FADE=0.22, BAND_RISE=18;    // blocco: fade + micro-slide della fascia
+  const WIPE_DUR=0.40, WIPE_STEP=0.07, UL_DUR=0.5;    // verde + sottolineatura
+  const CITE_DELAY=0.18, CITE_REVEAL=0.5, CITE_SLIDE=14;
+  const CHAP_FADE=0.5, SUB_DUR=0.55, RULE_DUR=0.45, CL_DUR=0.42, CL_STEP=0.035, CHAP_BLUR=10;
+  const MAX_FONT=78, MIN_FONT=44, FONT_STEP=4, MAX_LINES=3, PAD_Y=40;
+  const LINE_RATIO=1.4454;
+
+  const stage=document.getElementById("stage");
+  const hud=document.getElementById("hud");
+  const clamp01=x=>x<0?0:x>1?1:x;
+  const easeOutCubic=x=>1-Math.pow(1-x,3);
+  const easeOutExpo =x=>x>=1?1:1-Math.pow(2,-10*x);
+  const easeOutBack =x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);};
+
+  let beats=[], totalDuration=0;
+
+  function tokenize(text, highlight){
+    let hlStart=-1,hlEnd=-1;
+    if(highlight){ const idx=text.toLowerCase().indexOf(highlight.toLowerCase());
+      if(idx>=0){hlStart=idx;hlEnd=idx+highlight.length;} }
+    const inHl=k=>k>=hlStart&&k<hlEnd;
+    const words=[]; let i=0;
+    while(i<text.length){
+      if(/\s/.test(text[i])){i++;continue;}
+      let j=i; while(j<text.length&&!/\s/.test(text[j]))j++;
+      const runs=[]; let k=i;
+      while(k<j){ const flag=inHl(k); let m=k; while(m<j&&inHl(m)===flag)m++;
+        runs.push({text:text.slice(k,m),hl:flag}); k=m; }
+      words.push({runs,hl:runs.some(r=>r.hl)}); i=j;
+    }
+    return words;
+  }
+
+  // micro-citazione/etichetta: marker + testo (rivelato con wipe)
+  function buildTag(cls, text){
+    const el=document.createElement("div"); el.className=cls;
+    const mk=document.createElement("span"); mk.className="mk"; mk.textContent=(cls==="cite")?"❯":"◉";
+    const tx=document.createElement("span"); tx.className="tx";
+    const inner=document.createElement("span"); inner.textContent=text; tx.appendChild(inner);
+    el.append(mk,tx); stage.appendChild(el);
+    return {el, mk, tx};
+  }
+
+  function buildChapter(beat){
+    const el=document.createElement("div"); el.className="chapter";
+    let sub=null;
+    if(beat.chapter.sub){ sub=document.createElement("div"); sub.className="sub"; sub.textContent=beat.chapter.sub; el.appendChild(sub); }
+    const rule=document.createElement("div"); rule.className="rule"; el.appendChild(rule);
+    const title=document.createElement("div"); title.className="title";
+    const letters=[];
+    for(const ch of beat.chapter.title){
+      if(ch===" "){ title.appendChild(document.createTextNode(" ")); continue; }
+      const s=document.createElement("span"); s.className="cl"; s.textContent=ch; title.appendChild(s); letters.push(s);
+    }
+    el.appendChild(title); stage.appendChild(el);
+    return { chapter:true, el, sub, rule, letters, subLen:(beat.chapter.sub||"").length, dur:beat.duration };
+  }
+
+  function buildBeat(beat){
+    if(beat.chapter) return buildChapter(beat);
+    const raw=typeof beat.text==="string"?beat.text.trim():"";
+    let cite=null,label=null;
+    if(beat.cite)  cite =buildTag("cite",  beat.cite);
+    if(beat.label) label=buildTag("label", beat.label);
+    if(!raw) return { silent:true, nodes:[], dur:beat.duration, cite, label };
+
+    const el=document.createElement("div"); const scrim=document.createElement("div"); const lines=document.createElement("div");
+    el.className="beat"; scrim.className="scrim"; lines.className="lines"; el.append(scrim,lines);
+    const words=tokenize(beat.text, beat.highlight); const nodes=[]; let group=null;
+    words.forEach((w,i)=>{
+      // "|" nel testo = a capo forzato (non viene mostrato)
+      if(w.runs.length===1&&w.runs[0].text==="|"){ lines.appendChild(document.createElement("br")); return; }
+      const outer=document.createElement("span"); const inner=document.createElement("span");
+      outer.className="w"; inner.className="ww";
+      const acids=[]; const uls=[];
+      for(const run of w.runs){
+        if(!run.hl){ const plain=document.createElement("span"); plain.textContent=run.text; inner.appendChild(plain); continue; }
+        const holder=document.createElement("span"); holder.className="run";
+        const base=document.createElement("span"); base.textContent=run.text;
+        const acid=document.createElement("span"); acid.className="acid"; acid.textContent=run.text;
+        const ul=document.createElement("span"); ul.className="ul";
+        holder.append(base,acid,ul); inner.appendChild(holder); acids.push(acid); uls.push(ul);
+      }
+      outer.appendChild(inner);
+      // le parole evidenziate consecutive stanno in un gruppo che non va mai a capo
+      const next=words[i+1];
+      if(w.hl){
+        if(!group){ group=document.createElement("span"); group.className="hlgroup"; lines.appendChild(group); }
+        group.appendChild(outer);
+        if(next&&next.hl) group.appendChild(document.createTextNode(" "));
+        else { group=null; if(next) lines.appendChild(document.createTextNode(" ")); }
+      } else {
+        lines.appendChild(outer);
+        if(next) lines.appendChild(document.createTextNode(" "));
+      }
+      nodes.push({inner,acids,uls,hl:w.hl});
+    });
+    stage.appendChild(el);
+    return { el, lines, nodes, dur:beat.duration, cite, label };
+  }
+
+  function fitFont(b){
+    let size=MAX_FONT, lineCount=0;
+    for(;size>=MIN_FONT;size-=FONT_STEP){
+      const lh=Math.round(size*LINE_RATIO);
+      b.lines.style.fontSize=size+"px"; b.lines.style.lineHeight=lh+"px";
+      lineCount=Math.round((b.lines.clientHeight-2*PAD_Y)/lh);
+      if(lineCount<=MAX_LINES) break;
+    }
+    if(size<MIN_FONT){ size=MIN_FONT; const lh=Math.round(size*LINE_RATIO);
+      b.lines.style.fontSize=size+"px"; b.lines.style.lineHeight=lh+"px";
+      lineCount=Math.round((b.lines.clientHeight-2*PAD_Y)/lh); }
+    b.fontSize=size; b.lineCount=lineCount; b.overflow=lineCount>MAX_LINES; return size;
+  }
+
+  function scheduleWords(b){
+    const n=b.nodes.length;
+    const budget=Math.min(0.62*b.dur,1.15);
+    const stagger=n>1?Math.max(0.02,(budget-WORD_DUR)/(n-1)):0;
+    b.nodes.forEach((node,i)=>{node.delay=i*stagger;});
+    const hlIdx=b.nodes.map((nd,i)=>nd.hl?i:-1).filter(i=>i>=0);
+    if(hlIdx.length){
+      const wipeStart=b.nodes[hlIdx[hlIdx.length-1]].delay+WORD_DUR*0.7;
+      hlIdx.forEach((idx,j)=>{b.nodes[idx].wipeDelay=wipeStart+j*WIPE_STEP;});
+    }
+  }
+
+  window.setTimeline=function(data){
+    stage.innerHTML=""; beats=[]; let cursor=0;
+    for(const beat of data.beats){ const b=buildBeat(beat); b.start=cursor; cursor+=beat.duration; beats.push(b); }
+    totalDuration=cursor;
+    for(const b of beats){ if(!b.silent&&!b.chapter){ fitFont(b); scheduleWords(b); } }
+    window.__totalDuration=totalDuration; window.__ready=true; window.seek(0);
+    return { beats:beats.length, duration:totalDuration };
+  };
+
+  window.measure=function(){
+    return beats.map((b,i)=>{
+      if(b.chapter) return {index:i, chapter:true, duration:b.dur};
+      if(b.silent) return {index:i, silent:true, duration:b.dur};
+      const lastDelay=b.nodes.length?Math.max(...b.nodes.map(n=>n.delay)):0;
+      return { index:i, fontSize:b.fontSize, lineCount:b.lineCount, overflow:b.overflow,
+        words:b.nodes.length, scrimHeight:b.el.offsetHeight,
+        scrimTop:1080-60-b.el.offsetHeight, scrimBottom:1080-60,
+        entranceEnd:lastDelay+WORD_DUR, duration:b.dur };
+    });
+  };
+
+  function blockAlpha(local,dur){
+    if(local<IN_FADE) return easeOutCubic(local/IN_FADE);
+    if(local>dur-OUT_FADE) return 1-easeOutCubic((local-(dur-OUT_FADE))/OUT_FADE);
+    return 1;
+  }
+  function hideEl(el){ if(el.style.visibility!=="hidden"){el.style.visibility="hidden";el.style.opacity="0";} }
+
+  // marker + testo delle micro-citazioni
+  function seekTag(tag, local, dur, dir){
+    if(!tag) return;
+    if(local<0||local>=dur){ hideEl(tag.el); return; }
+    tag.el.style.visibility="visible";
+    const a=blockAlpha(Math.max(0,local-CITE_DELAY), dur-CITE_DELAY);
+    tag.el.style.opacity=clamp01(a).toFixed(3);
+    const mp=easeOutBack(clamp01((local-CITE_DELAY)/0.34));
+    tag.mk.style.transform="scale("+Math.max(0,mp).toFixed(3)+")";
+    const rp=easeOutExpo(clamp01((local-CITE_DELAY-0.06)/CITE_REVEAL));
+    tag.tx.firstChild.style.transform="translateX("+((1-rp)*CITE_SLIDE*dir).toFixed(2)+"px)";
+    tag.tx.style.clipPath="inset(0 "+(dir<0?((1-rp)*100):0).toFixed(2)+"% 0 "+(dir>0?((1-rp)*100):0).toFixed(2)+"%)";
+  }
+
+  window.seek=function(t){
+    for(const b of beats){
+      const local=t-b.start;
+      const on=local>=0&&local<b.dur;
+
+      // cite (rivela da destra, dir -1) / label (da sinistra, dir +1)
+      seekTag(b.cite,  local, b.dur, -1);
+      seekTag(b.label, local, b.dur, +1);
+
+      if(b.chapter){
+        if(!on){ hideEl(b.el); continue; }
+        b.el.style.visibility="visible";
+        let a=1;
+        if(local<CHAP_FADE) a=easeOutCubic(local/CHAP_FADE);
+        else if(local>b.dur-CHAP_FADE) a=1-easeOutCubic((local-(b.dur-CHAP_FADE))/CHAP_FADE);
+        b.el.style.opacity=clamp01(a).toFixed(3);
+        // sottotitolo: wipe di rivelazione
+        if(b.sub){ const sp=easeOutExpo(clamp01((local-0.12)/SUB_DUR));
+          b.sub.style.clipPath="inset(0 "+((1-sp)*100).toFixed(2)+"% 0 0)"; }
+        // riga: si apre dal centro
+        const rp=easeOutExpo(clamp01((local-0.5)/RULE_DUR));
+        b.rule.style.transform="scaleX("+rp.toFixed(3)+")";
+        // titolo: lettera per lettera, rise + blur + fade
+        b.letters.forEach((s,i)=>{
+          const p=easeOutExpo(clamp01((local-(0.66+i*CL_STEP))/CL_DUR));
+          s.style.opacity=p.toFixed(3);
+          s.style.transform="translateY("+((1-p)*26).toFixed(2)+"px)";
+          s.style.filter="blur("+((1-p)*CHAP_BLUR).toFixed(2)+"px)";
+        });
+        continue;
+      }
+      if(b.silent) continue;
+
+      if(!on){ hideEl(b.el); continue; }
+      b.el.style.visibility="visible";
+      const alpha=clamp01(blockAlpha(local,b.dur));
+      b.el.style.opacity=alpha.toFixed(4);
+      // micro-slide della fascia in ingresso
+      const bandP=easeOutCubic(clamp01(local/(IN_FADE*1.6)));
+      b.el.style.transform="translateY("+((1-bandP)*BAND_RISE).toFixed(2)+"px)";
+
+      for(const node of b.nodes){
+        const p=easeOutExpo(clamp01((local-node.delay)/WORD_DUR));
+        node.inner.style.transform="translateY("+((1-p)*RISE_EM).toFixed(4)+"em)";
+        node.inner.style.opacity=p.toFixed(4);
+        node.inner.style.filter = p>=1 ? "none" : "blur("+((1-p)*BLUR_MAX).toFixed(2)+"px)";
+        if(node.acids.length){
+          const q=easeOutCubic(clamp01((local-node.wipeDelay)/WIPE_DUR));
+          const inset="inset(0 "+((1-q)*100).toFixed(2)+"% 0 0)";
+          for(const acid of node.acids) acid.style.clipPath=inset;
+          const u=easeOutExpo(clamp01((local-node.wipeDelay)/UL_DUR));
+          for(const ul of node.uls) ul.style.transform="scaleX("+u.toFixed(3)+")";
+        }
+      }
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", async ()=>{
+    if(window.__RENDER__||window.__ready) return;
+    let data;
+    try{ const res=await fetch("../content/timeline_v7.json"); data=await res.json(); }
+    catch(err){ hud.style.display="block"; hud.textContent="Anteprima non disponibile da file://\nUsa: python scripts/render_captions16.py --preview"; return; }
+    await document.fonts.ready; window.setTimeline(data);
+    hud.style.display="block"; const t0=performance.now();
+    (function loop(){ const t=((performance.now()-t0)/1000)%totalDuration; window.seek(t);
+      hud.textContent=t.toFixed(2).padStart(6)+" / "+totalDuration.toFixed(2)+" s"; requestAnimationFrame(loop); })();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+{
+  "_readme": "Timeline v2 'La discarica dei libri' — approccio a tutto schermo. Letta da scripts/build_fullscreen.py. Ogni beat pesa sulla durata totale in proporzione alle parole di weight_text (usato solo per il calcolo dei tempi, non mostrato); la durata è poi normalizzata sulla lunghezza reale della voce in dist/audio/voce.wav. Se un beat ha più shot, la sua durata si divide in parti uguali tra gli shot.",
+  "width": 1080,
+  "height": 1920,
+  "fps": 25,
+  "min_shot_seconds": 1.35,
+  "glitch_seconds": 0.18,
+  "voice_source": "../../../../nuovi materiali per reel libri lipsia/voce che legge il testo del video.m4a",
+  "voice_trim_start": 5.85,
+  "beats": [
+    {
+      "weight_text": "Questa storia comincia con una biblioteca al contrario. Non ci sono scaffali. Non c'è un catalogo. Ci sono soltanto montagne di libri abbandonate sotto il cielo.",
+      "shots": [{"source": "plo_0215", "kind": "clip"}]
+    },
+    {
+      "weight_text": "È l'aprile del 1991. A sud di Lipsia, tonnellate di volumi provenienti dalla Germania Est vengono scaricate in una discarica.",
+      "shots": [{"source": "plo_0740", "kind": "clip"}]
+    },
+    {
+      "weight_text": "Non sono libri vecchi o consumati. Molti sono appena usciti dalla tipografia. Alcuni sono ancora imballati sui pallet.",
+      "shots": [{"source": "plo_0445", "kind": "clip"}]
+    },
+    {
+      "weight_text": "Ci sono romanzi, raccolte di poesie, libri per ragazzi, manuali di fisica, biologia, musica e cucina.",
+      "shots": [{"source": "L3", "kind": "clip"}]
+    },
+    {
+      "weight_text": "Ci sono Heinrich Mann, Dostoevskij, Stefan Heym e il premio Nobel Jaroslav Seifert.",
+      "shots": [{"source": "plo_0545", "kind": "clip"}]
+    },
+    {
+      "weight_text": "C'è persino un manuale per riparare la Trabant.",
+      "shots": [{"source": "trabant", "kind": "image", "zoom": 1.08}]
+    },
+    {
+      "weight_text": "Intere tirature sono diventate improvvisamente inutili. Nessuno le vuole. Nemmeno come carta straccia.",
+      "shots": [{"source": "P1", "kind": "clip"}]
+    },
+    {
+      "weight_text": "La Germania Est amava definirsi la terra dei lettori. Ogni anno le sue case editrici pubblicavano circa seimila titoli, con tirature che potevano raggiungere complessivamente oltre cento milioni di copie.",
+      "shots": [
+        {"source": "L1", "kind": "clip"},
+        {"source": "lib_0030", "kind": "clip"}
+      ]
+    },
+    {
+      "weight_text": "Lo Stato controllava ciò che poteva essere pubblicato. Assegnava la carta, autorizzava i titoli e censurava gli autori.",
+      "shots": [{"source": "lib_0420", "kind": "clip"}]
+    },
+    {
+      "weight_text": "Ma sosteneva anche le case editrici e manteneva basso il prezzo dei libri.",
+      "shots": [{"source": "lib_0140", "kind": "clip"}]
+    },
+    {
+      "weight_text": "Con la riunificazione finisce la censura. Ma scompare anche tutto ciò che aveva tenuto in piedi quel sistema editoriale. I finanziamenti. La distribuzione garantita. Le librerie. Il pubblico.",
+      "shots": [
+        {"source": "L4", "kind": "clip"},
+        {"source": "plo_0415", "kind": "clip"},
+        {"source": "plo_0245", "kind": "clip"},
+        {"source": "lib_0945", "kind": "clip"}
+      ]
+    },
+    {
+      "weight_text": "I tascabili occidentali conquistano gli scaffali. Le vendite delle vecchie edizioni crollano.",
+      "shots": [{"source": "lib_0620", "kind": "clip"}]
+    },
+    {
+      "weight_text": "Le case editrici orientali falliscono, vengono acquistate o licenziano gran parte dei dipendenti.",
+      "shots": [{"source": "P3", "kind": "clip"}]
+    },
+    {
+      "weight_text": "Molti scrittori sono finalmente liberi di pubblicare ciò che vogliono. Ma non hanno più un editore, un lavoro o dei lettori.",
+      "shots": [{"source": "plo_0245", "kind": "clip", "seek": 2.5}]
+    },
+    {
+      "weight_text": "Poche settimane dopo, nel maggio del 1991, una fotografia appare a pagina quattro della Süddeutsche Zeitung. Mostra migliaia di libri abbandonati nella discarica di Plottendorf, vicino a Lipsia.",
+      "shots": [{"source": "P3", "kind": "clip", "seek": 2.0}]
+    },
+    {
+      "weight_text": "A vedere quella fotografia è Martin Weskott, un pastore di Katlenburg, un piccolo paese ai piedi dei monti dello Harz.",
+      "shots": [{"source": "pastore", "kind": "image", "zoom": 1.1}]
+    },
+    {
+      "weight_text": "Weskott non è un raffinato collezionista di prime edizioni. È un uomo concreto, abituato a visitare i malati con il suo vecchio furgone Mercedes.",
+      "shots": [{"source": "plo_0646", "kind": "clip"}]
+    },
+    {
+      "weight_text": "Guarda quella fotografia. Prende il furgone. E parte.",
+      "shots": [
+        {"source": "pastore", "kind": "image", "zoom": 1.15},
+        {"source": "plo_0631", "kind": "clip"}
+      ]
+    },
+    {
+      "weight_text": "A Plottendorf raccoglie tutti i libri che riesce a caricare. Li porta a Katlenburg e li mostra agli abitanti del paese. Le persone si interessano. Li leggono. Ne chiedono altri.",
+      "shots": [
+        {"source": "plo_0445", "kind": "clip", "seek": 2.5},
+        {"source": "lib_0030", "kind": "clip", "seek": 2.0}
+      ]
+    },
+    {
+      "weight_text": "Così Weskott torna alla discarica. Poi torna ancora. Quando il furgone non basta più, prende in prestito dei camion. Quella prima spedizione diventa una lunga operazione di salvataggio.",
+      "shots": [
+        {"source": "plo_0628", "kind": "clip"},
+        {"source": "plo_0740", "kind": "clip", "seek": 2.0}
+      ]
+    },
+    {
+      "weight_text": "Nel corso degli anni, Weskott e i suoi collaboratori compiono circa centocinquanta viaggi. Alla raccolta si aggiungono i libri scartati da biblioteche e case editrici della Germania orientale e occidentale.",
+      "shots": [{"source": "P2", "kind": "clip"}]
+    },
+    {
+      "weight_text": "Prima riempiono il refettorio dell'antico monastero di Katlenburg. Poi occupano un grande fienile gotico costruito per conservare le decime. Dentro, i libri formano torri, dune e corridoi che si restringono e si allargano.",
+      "shots": [
+        {"source": "lib_0030", "kind": "clip", "seek": 2.0},
+        {"source": "plo_0245", "kind": "clip"}
+      ]
+    },
+    {
+      "weight_text": "Coprono i tavoli. Riempiono il soppalco. Occupano ogni parete. Profumano di carta vecchia e inchiostro.",
+      "shots": [
+        {"source": "plo_0215", "kind": "clip", "seek": 2.5},
+        {"source": "plo_0415", "kind": "clip", "seek": 2.0},
+        {"source": "plo_0445", "kind": "clip"}
+      ]
+    },
+    {
+      "weight_text": "Alla fine diventano un milione. Quella non è una biblioteca ordinaria. È una biblioteca composta da ciò che la storia aveva deciso di scartare.",
+      "shots": [{"source": "L1", "kind": "clip", "seek": 1.5}]
+    },
+    {
+      "weight_text": "Ogni domenica, dopo la funzione, le persone possono entrarvi e portare via un libro lasciando una donazione a Pane per il Mondo. I volumi non vengono soltanto conservati. Tornano a circolare. Tornano a essere letti.",
+      "shots": [
+        {"source": "lib_0945", "kind": "clip", "seek": 2.0},
+        {"source": "lib_0140", "kind": "clip", "seek": 2.0}
+      ]
+    },
+    {
+      "weight_text": "Il 22 luglio del 1991, una telecamera di Kanal X filma la discarica di Plottendorf. Sono le immagini che stiamo guardando.",
+      "shots": [{"source": "P1", "kind": "clip", "seek": 1.5}]
+    },
+    {
+      "weight_text": "Non mostrano soltanto dei libri gettati via. Mostrano il momento in cui un intero sistema culturale rischia di sparire.",
+      "shots": [{"source": "P3", "kind": "clip", "seek": 3.5}]
+    },
+    {
+      "weight_text": "La storia di Weskott non cancella la censura della Germania Est. E non trasforma quel mondo in un paradiso. Ci ricorda però che anche il mercato può decidere quali libri meritino di continuare a esistere.",
+      "shots": [
+        {"source": "lib_0420", "kind": "clip", "seek": 2.5},
+        {"source": "plo_0545", "kind": "clip", "seek": 2.0}
+      ]
+    },
+    {
+      "weight_text": "Un canone non scompare quando viene dimenticato. Comincia a scomparire quando nessuno può più incontrarlo.",
+      "shots": [{"source": "L2", "kind": "clip"}]
+    },
+    {
+      "weight_text": "Martin Weskott non ha ricostruito il mondo da cui provenivano quei libri. Ha mantenuto aperto un passaggio.",
+      "shots": [{"source": "pastore", "kind": "image", "zoom": 1.1}]
+    },
+    {
+      "weight_text": "Perché un libro non è salvo quando viene chiuso dentro un deposito. È salvo quando trova un altro lettore.",
+      "shots": [
+        {"source": "L4", "kind": "clip", "seek": 2.0},
+        {"source": "lib_0030", "kind": "clip", "seek": 4.0}
+      ]
+    },
+    {
+      "weight_text": "Ogni lettore è un cacciatore di paradisi perduti. Segue le tracce lasciate dai libri. E percorre strade di cui nessuno ricorda più l'inizio.",
+      "shots": [{"source": "L1", "kind": "clip", "seek": 2.5}]
+    }
+  ]
+}

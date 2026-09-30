@@ -1,0 +1,165 @@
+{
+  "_readme": "Timeline v3 'La discarica dei libri' — formato stand-up, solo testo, nessun audio (musica aggiunta poi da Instagram). Struttura 'parti dalla fine': si apre sul finale (il prete, il manuale della Trabant, la biblioteca da un milione di libri), poi si torna indietro al 1991. Ogni beat ha un testo che resta a schermo per tutta la sua durata mentre le inquadrature sotto si tagliano (con glitch) per l'accostamento artistico biblioteca/discarica.",
+  "width": 1080,
+  "height": 1920,
+  "fps": 25,
+  "glitch_seconds": 0.16,
+  "beats": [
+    {
+      "text": "Cosa c'entrano un prete e il manuale della Trabant?",
+      "highlight": "il manuale della Trabant",
+      "duration": 3.0,
+      "shots": [{"source": "trabant", "kind": "image", "zoom": 1.05}]
+    },
+    {
+      "text": "Non è l'inizio di una barzelletta.",
+      "highlight": null,
+      "duration": 2.0,
+      "shots": [{"source": "pastore", "kind": "image", "zoom": 1.05}]
+    },
+    {
+      "text": "Oggi, in un paese di duecento persone, c'è una biblioteca da un milione di libri.",
+      "highlight": "un milione di libri",
+      "duration": 3.6,
+      "shots": [{"source": "pastore", "kind": "image", "zoom": 1.18}]
+    },
+    {
+      "text": "Comincia in una discarica.",
+      "highlight": "discarica",
+      "duration": 2.2,
+      "shots": [{"source": "plo_0215", "kind": "clip"}]
+    },
+    {
+      "text": "Aprile 1991, vicino Lipsia.",
+      "highlight": null,
+      "duration": 2.4,
+      "shots": [{"source": "plo_0740", "kind": "clip"}]
+    },
+    {
+      "text": "Tonnellate di libri, appena stampati, finiscono nella spazzatura.",
+      "highlight": "nella spazzatura",
+      "duration": 3.2,
+      "shots": [{"source": "P1", "kind": "clip"}]
+    },
+    {
+      "text": "Ancora imballati.",
+      "highlight": null,
+      "duration": 1.9,
+      "shots": [{"source": "P4", "kind": "clip"}]
+    },
+    {
+      "text": "C'è un romanzo. Una raccolta di poesie.",
+      "highlight": null,
+      "duration": 2.6,
+      "shots": [{"source": "plo_0545", "kind": "clip"}]
+    },
+    {
+      "text": "Un premio Nobel.",
+      "highlight": "premio Nobel",
+      "duration": 1.8,
+      "shots": [{"source": "P2", "kind": "clip"}]
+    },
+    {
+      "text": "E, sì, il manuale della Trabant.",
+      "highlight": "manuale della Trabant",
+      "duration": 2.4,
+      "shots": [{"source": "trabant", "kind": "image", "zoom": 1.05}]
+    },
+    {
+      "text": "Chi butta via un premio Nobel?",
+      "highlight": null,
+      "duration": 2.4,
+      "shots": [{"source": "P3", "kind": "clip"}]
+    },
+    {
+      "text": "Fino a un anno prima, la chiamavano «la terra dei lettori».",
+      "highlight": "la terra dei lettori",
+      "duration": 3.0,
+      "shots": [{"source": "L1", "kind": "clip"}]
+    },
+    {
+      "text": "Poi arriva il mercato. E il mercato non legge poesie.",
+      "highlight": "non legge poesie",
+      "duration": 3.4,
+      "shots": [
+        {"source": "lib_0620", "kind": "clip"},
+        {"source": "P3", "kind": "clip", "seek": 2.0}
+      ]
+    },
+    {
+      "text": "Una foto finisce sul giornale.",
+      "highlight": null,
+      "duration": 2.2,
+      "shots": [{"source": "P3", "kind": "clip", "seek": 3.0}]
+    },
+    {
+      "text": "La vede un pastore.",
+      "highlight": null,
+      "duration": 2.2,
+      "shots": [{"source": "pastore", "kind": "image", "zoom": 1.05}]
+    },
+    {
+      "text": "Non un bibliofilo. Uno con il furgone.",
+      "highlight": "il furgone",
+      "duration": 2.6,
+      "shots": [{"source": "plo_0646", "kind": "clip"}]
+    },
+    {
+      "text": "Prende il furgone. Va alla discarica.",
+      "highlight": null,
+      "duration": 2.4,
+      "shots": [{"source": "plo_0631", "kind": "clip"}]
+    },
+    {
+      "text": "Torna. Poi torna ancora.",
+      "highlight": null,
+      "duration": 2.4,
+      "shots": [
+        {"source": "plo_0628", "kind": "clip"},
+        {"source": "plo_0740", "kind": "clip", "seek": 3.0}
+      ]
+    },
+    {
+      "text": "Quando il furgone non basta, arrivano i camion.",
+      "highlight": "i camion",
+      "duration": 2.8,
+      "shots": [{"source": "plo_0445", "kind": "clip"}]
+    },
+    {
+      "text": "Un milione di libri dopo…",
+      "highlight": "Un milione di libri",
+      "duration": 2.6,
+      "shots": [{"source": "pastore", "kind": "image", "zoom": 1.05}]
+    },
+    {
+      "text": "…il manuale della Trabant è ancora lì.",
+      "highlight": "manuale della Trabant",
+      "duration": 2.6,
+      "shots": [{"source": "trabant", "kind": "image", "zoom": 1.12}]
+    },
+    {
+      "text": "Un canone non sparisce quando lo dimentichi.",
+      "highlight": "Un canone non sparisce",
+      "duration": 3.0,
+      "shots": [{"source": "L2", "kind": "clip"}]
+    },
+    {
+      "text": "Sparisce quando nessuno può più trovarlo.",
+      "highlight": "nessuno può più trovarlo",
+      "duration": 2.8,
+      "shots": [{"source": "L4", "kind": "clip"}]
+    },
+    {
+      "text": "Ogni lettore è un cacciatore di paradisi perduti.",
+      "highlight": "cacciatore di paradisi perduti",
+      "duration": 3.2,
+      "shots": [{"source": "L1", "kind": "clip", "seek": 2.0}]
+    },
+    {
+      "text": "Voi, quando l'avete trovato l'ultima volta?",
+      "highlight": "l'ultima volta",
+      "duration": 3.0,
+      "shots": [{"source": "black", "kind": "solid"}]
+    }
+  ]
+}
