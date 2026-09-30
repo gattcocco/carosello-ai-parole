@@ -53,3 +53,5 @@ allora `pipeline/`, `testi/`, `Nuove card stile evangelion/`, `GOATS/`,
 
 Il [template Kdenlive condiviso](../templates/reel-v1/README.md) vive separato
 dagli episodi. Il prototipo di 22 secondi combina esempi Extra Coin e Buco Nero.
+
+- [Showreel newsletter](showreel-newsletter/README.md): rassegna di 53 secondi, con progetto Kdenlive nativo e due slot GIF.

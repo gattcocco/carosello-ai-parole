@@ -12,12 +12,13 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument('project',type=Path)
     p.add_argument('--output',type=Path)
+    p.add_argument('--cache-dir',type=Path,default=BASE/'.cache')
     a=p.parse_args();project=a.project.resolve()
     if not project.is_file():raise FileNotFoundError(project)
     output=(a.output or BASE/'dist'/f'{project.stem}.mp4').resolve()
     if output.exists():raise FileExistsError(f'Output già presente: {output}; scegli un nuovo nome.')
     output.parent.mkdir(parents=True,exist_ok=True)
-    bd=native_bin();cache=BASE/'.cache';cache.mkdir(exist_ok=True)
+    bd=native_bin();cache=a.cache_dir.resolve();cache.mkdir(parents=True,exist_ok=True)
     index=1
     while (cache/f'{project.stem}-native-{index}.mp4').exists():index+=1
     intermediate=cache/f'{project.stem}-native-{index}.mp4'
@@ -25,9 +26,9 @@ def main():
     env['QT_QPA_FONTDIR']=str(Path(os.environ.get('WINDIR','C:/Windows'))/'Fonts')
     logfile=cache/f'{project.stem}-native-{index}.log'
     with logfile.open('w',encoding='utf-8') as log:
-        result=subprocess.run([str(bd/'kdenlive.exe'),'--no-welcome','--config',str(cache/'kdenlive-test.rc'),
+        result=subprocess.run([str(bd/'kdenlive.exe'),'--no-welcome','--config',str(cache/f'{project.stem}-native-{index}.rc'),
                                '--render',str(project),str(intermediate)],env=env,stdout=log,stderr=log)
-    if result.returncode or not intermediate.is_file():raise RuntimeError(f'Render fallito: {logfile}')
+    if result.returncode or not intermediate.is_file():raise RuntimeError(f'Render fallito (codice {result.returncode}): {logfile}')
     info=json.loads(subprocess.check_output([str(bd/'ffprobe.exe'),'-v','error','-show_streams','-show_format',
                                             '-of','json',str(intermediate)],text=True))
     video=next(s for s in info['streams'] if s['codec_type']=='video')
